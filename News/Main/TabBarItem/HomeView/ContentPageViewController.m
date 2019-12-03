@@ -34,6 +34,7 @@
     } else {
         [self setViewControllers:[NSArray arrayWithObject:self.controllers[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     }
+    currentIndex = index;
 }
 
 - (void)configArray:(NSMutableArray<UIViewController *> *)controllers Index:(NSInteger)index Block:(TabSwitchBlock)tabSwitch{

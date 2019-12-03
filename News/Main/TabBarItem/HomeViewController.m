@@ -36,7 +36,7 @@
     [self.view addSubview:self.tabCVC.view];
     [self.view addSubview:self.contentPVC.view];
 
-    [self.tabCVC configArray:self.tabs Index:0 Block:^(NSInteger index) {
+    [self.tabCVC configArray:self.tabs TabWeight:120 TabHeight:50 Index:0 Block:^(NSInteger index) {
         [self.contentPVC updateIndex:index];
     }];
     [self.contentPVC configArray:self.contents Index:0 Block:^(NSInteger index) {

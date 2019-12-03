@@ -11,9 +11,11 @@
 #import "TitleCollectionViewCell.h"
 
 @interface TitleCollectionViewController()
-<UICollectionViewDelegate, UICollectionViewDataSource>
+<UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 {
     NSInteger currentIndex;
+    CGFloat tabWeight;
+    CGFloat tabHeight;
 }
 @end
 
@@ -23,7 +25,6 @@
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
     if (self = [super initWithCollectionViewLayout:layout]){
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = CGSizeMake(100, 50);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         
@@ -35,14 +36,30 @@
     return self;
 }
 
+- (BOOL)canMove:(NSInteger)index{
+    CGFloat maxWidth = self.view.frame.size.width;
+    CGFloat halfWidth = maxWidth / 2;
+    return index*tabWeight>=halfWidth && (self.tabs.count-index-1)*tabWeight>=halfWidth;
+}
+
 - (void)updateIndex:(NSInteger)index{
+    CGFloat maxWidth = self.view.frame.size.width;
+    CGFloat offset = index * tabWeight - maxWidth/2 + tabWeight/2;
+    if (![self canMove:index]){
+        if (index < self.tabs.count/2)offset = 0;
+        else offset = self.tabs.count*tabWeight - maxWidth;
+    }
+    [self.collectionView setContentOffset:CGPointMake(offset, 0) animated:YES];
+    
     currentIndex = index;
     [self.collectionView reloadData];
 }
 
-- (void)configArray:(NSMutableArray<NSString *> *)tabs Index:(NSInteger)index Block:(ContentSwitchBlock)contentSwitch{
+- (void)configArray:(NSMutableArray<NSString *> *)tabs TabWeight:(CGFloat)weight TabHeight:(CGFloat)height Index:(NSInteger)index Block:(ContentSwitchBlock)contentSwitch{
     _tabs = tabs;
     _contentSwitch = contentSwitch;
+    tabWeight = weight;
+    tabHeight = height;
     [self updateIndex:index];
 }
 
@@ -68,6 +85,10 @@
 }
 
 #pragma mark UICollectionViewDelegate
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(tabWeight, tabHeight);
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self updateIndex:indexPath.row];
