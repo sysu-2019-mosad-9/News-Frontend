@@ -18,7 +18,7 @@ typedef void(^ContentSwitchBlock)(NSInteger index);
 @property (nonatomic, strong) NSArray<NSString *> * tabs;
 @property (nonatomic, strong) ContentSwitchBlock contentSwitch;
 - (void)updateIndex:(NSInteger)index;
-- (void) configArray:(NSMutableArray<NSString *> *)tabs Index:(NSInteger)index Block:(ContentSwitchBlock)contentSwitch;
+- (void) configArray:(NSMutableArray<NSString *> *)tabs TabWeight:(CGFloat)weight TabHeight:(CGFloat)height Index:(NSInteger)index Block:(ContentSwitchBlock)contentSwitch;
 
 @end
 
