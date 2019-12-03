@@ -1,5 +1,5 @@
 #import "SceneDelegate.h"
-#import "Main/NavigationController.h"
+#import "Main/TabBarController.h"
 
 @interface SceneDelegate ()
 
@@ -15,7 +15,8 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     self.window.frame = windowScene.coordinateSpace.bounds;
-    self.window.rootViewController = [[NavigationController alloc] init];
+    self.window.rootViewController = [[TabBarController alloc] init];
+    self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
 }
 

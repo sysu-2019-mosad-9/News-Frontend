@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582A21F270A06E33B10C8D /* Pods_News.framework */; };
+		F5521F2023953C6A001C5038 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5521F1F23953C6A001C5038 /* TabBarController.m */; };
+		F5521F2423953D66001C5038 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5521F2323953D66001C5038 /* HomeViewController.m */; };
+		F5521F2723953DDF001C5038 /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5521F2623953DDF001C5038 /* OtherViewController.m */; };
+		F5521F2E23954186001C5038 /* TitleCollectionViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = F5521F2D23954186001C5038 /* TitleCollectionViewContoller.m */; };
+		F5521F34239542A1001C5038 /* TitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5521F33239542A1001C5038 /* TitleCollectionViewCell.m */; };
+		F56155BA2396021D00CC0761 /* ContentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56155B92396021D00CC0761 /* ContentPageViewController.m */; };
 		F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A21238D8140004DE2C6 /* AppDelegate.m */; };
 		F5E94A25238D8140004DE2C6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A24238D8140004DE2C6 /* SceneDelegate.m */; };
 		F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A27238D8140004DE2C6 /* ViewController.m */; };
@@ -15,13 +21,24 @@
 		F5E94A30238D8140004DE2C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E94A2E238D8140004DE2C6 /* LaunchScreen.storyboard */; };
 		F5E94A33238D8140004DE2C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A32238D8140004DE2C6 /* main.m */; };
 		F5E94A3B238D8332004DE2C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5E94A39238D8332004DE2C6 /* Main.storyboard */; };
-		F5E94A3E238D8514004DE2C6 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A3D238D8514004DE2C6 /* NavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		83582A21F270A06E33B10C8D /* Pods_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.debug.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.debug.xcconfig"; sourceTree = "<group>"; };
+		F5521F1E23953C5C001C5038 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		F5521F1F23953C6A001C5038 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		F5521F2223953D5B001C5038 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		F5521F2323953D66001C5038 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		F5521F2523953DCE001C5038 /* OtherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherViewController.h; sourceTree = "<group>"; };
+		F5521F2623953DDF001C5038 /* OtherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherViewController.m; sourceTree = "<group>"; };
+		F5521F2C23954179001C5038 /* TitleCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleCollectionViewController.h; sourceTree = "<group>"; };
+		F5521F2D23954186001C5038 /* TitleCollectionViewContoller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleCollectionViewContoller.m; sourceTree = "<group>"; };
+		F5521F3223954293001C5038 /* TitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleCollectionViewCell.h; sourceTree = "<group>"; };
+		F5521F33239542A1001C5038 /* TitleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleCollectionViewCell.m; sourceTree = "<group>"; };
+		F56155B82396020600CC0761 /* ContentPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentPageViewController.h; sourceTree = "<group>"; };
+		F56155B92396021D00CC0761 /* ContentPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentPageViewController.m; sourceTree = "<group>"; };
 		F5E94A1D238D8140004DE2C6 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5E94A20238D8140004DE2C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F5E94A21238D8140004DE2C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -34,8 +51,6 @@
 		F5E94A31238D8140004DE2C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5E94A32238D8140004DE2C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5E94A3A238D8332004DE2C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F5E94A3D238D8514004DE2C6 /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
-		F5E94A3F238D8521004DE2C6 /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +80,31 @@
 				83582A21F270A06E33B10C8D /* Pods_News.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5521F2123953D37001C5038 /* TabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				F5521F2823954057001C5038 /* HomeView */,
+				F5521F2223953D5B001C5038 /* HomeViewController.h */,
+				F5521F2323953D66001C5038 /* HomeViewController.m */,
+				F5521F2523953DCE001C5038 /* OtherViewController.h */,
+				F5521F2623953DDF001C5038 /* OtherViewController.m */,
+			);
+			path = TabBarItem;
+			sourceTree = "<group>";
+		};
+		F5521F2823954057001C5038 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				F5521F3223954293001C5038 /* TitleCollectionViewCell.h */,
+				F5521F33239542A1001C5038 /* TitleCollectionViewCell.m */,
+				F5521F2C23954179001C5038 /* TitleCollectionViewController.h */,
+				F5521F2D23954186001C5038 /* TitleCollectionViewContoller.m */,
+				F56155B82396020600CC0761 /* ContentPageViewController.h */,
+				F56155B92396021D00CC0761 /* ContentPageViewController.m */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		F5E94A14238D813F004DE2C6 = {
@@ -107,8 +147,9 @@
 		F5E94A3C238D84FE004DE2C6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				F5E94A3F238D8521004DE2C6 /* NavigationController.h */,
-				F5E94A3D238D8514004DE2C6 /* NavigationController.m */,
+				F5521F2123953D37001C5038 /* TabBarItem */,
+				F5521F1E23953C5C001C5038 /* TabBarController.h */,
+				F5521F1F23953C6A001C5038 /* TabBarController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -229,9 +270,14 @@
 			files = (
 				F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */,
 				F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */,
-				F5E94A3E238D8514004DE2C6 /* NavigationController.m in Sources */,
+				F5521F34239542A1001C5038 /* TitleCollectionViewCell.m in Sources */,
+				F56155BA2396021D00CC0761 /* ContentPageViewController.m in Sources */,
+				F5521F2023953C6A001C5038 /* TabBarController.m in Sources */,
 				F5E94A33238D8140004DE2C6 /* main.m in Sources */,
+				F5521F2E23954186001C5038 /* TitleCollectionViewContoller.m in Sources */,
 				F5E94A25238D8140004DE2C6 /* SceneDelegate.m in Sources */,
+				F5521F2723953DDF001C5038 /* OtherViewController.m in Sources */,
+				F5521F2423953D66001C5038 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
