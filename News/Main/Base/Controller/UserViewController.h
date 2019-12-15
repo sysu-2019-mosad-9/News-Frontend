@@ -1,0 +1,18 @@
+//
+//  UserViewController.h
+//  News
+//
+//  Created by tplish on 2019/12/15.
+//  Copyright © 2019 Team09. All rights reserved.
+//
+
+#ifndef UserViewController_h
+#define UserViewController_h
+
+#import <UIKit/UIKit.h>
+
+@interface UserViewController : UIViewController
+
+@end
+
+#endif /* UserViewController_h */
