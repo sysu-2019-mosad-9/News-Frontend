@@ -1,5 +1,5 @@
 //
-//  TitleVIew.m
+//  NavTitleVIew.m
 //  News
 //
 //  Created by tplish on 2019/12/16.
@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TitleView.h"
+#import "NavTitleView.h"
 
-@interface TitleView()
+@interface NavTitleView()
 
 @end
 
-@implementation TitleView
+@implementation NavTitleView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
