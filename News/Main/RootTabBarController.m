@@ -33,7 +33,7 @@
 #pragma mark - private method
 
 - (void)addChildVC:(UIViewController*)childVC withTitle:(NSString*)title withImage:(NSString*)image withSelectedImage:(NSString*)selectedImage{
-    childVC.tabBarItem.title = title;
+    childVC.title = title;
     childVC.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     childVC.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     

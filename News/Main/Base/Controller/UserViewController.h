@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UserViewController : UIViewController
-
++ (id)shareInstance;
 @end
 
 #endif /* UserViewController_h */
