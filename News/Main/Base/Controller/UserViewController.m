@@ -15,6 +15,16 @@
 
 @implementation UserViewController
 
+static UserViewController * instance;
+
++ (id)shareInstance{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (instance == nil) instance = [[UserViewController alloc] init];
+    });
+    return instance;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     

@@ -11,14 +11,16 @@
 #import "Base/Controller/UserViewController.h"
 
 @interface NavigationController()
-
+@property (nonatomic, strong) UIViewController * rootVC;
 @end
 
 @implementation NavigationController
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController{
     if (self = [super initWithRootViewController:rootViewController]){
-        self.tabBarItem.title = rootViewController.tabBarItem.title;
+        _rootVC = rootViewController;
+        _rootVC.edgesForExtendedLayout = UIRectEdgeNone;
+        _rootVC.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_tab"] style:UIBarButtonItemStyleDone target:self action:@selector(goToUserPage)];
     }
     return self;
 }
@@ -26,10 +28,12 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    
+
 }
 
 - (void)goToUserPage{
-
+    [_rootVC.navigationController pushViewController:[UserViewController shareInstance] animated:YES];
 }
 
 @end
