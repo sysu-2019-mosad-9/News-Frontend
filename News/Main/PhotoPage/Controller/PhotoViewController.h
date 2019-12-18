@@ -13,6 +13,10 @@
 
 @interface PhotoViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray<UIImage *> * dataSource;
+
+@property (strong, nonatomic) UICollectionView * imageCollection;
+
 @end
 
 #endif /* PhotoViewController_h */

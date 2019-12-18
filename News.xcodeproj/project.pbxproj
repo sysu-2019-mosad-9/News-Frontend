@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168E9A4623A9D02F001C567A /* ImageFlowCell.m */; };
 		D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582A21F270A06E33B10C8D /* Pods_News.framework */; };
 		F555044423A661C600924B7F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555044323A661C600924B7F /* HomeViewController.m */; };
 		F555044723A661E900924B7F /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555044623A661E900924B7F /* VideoViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		168E9A4523A9D020001C567A /* ImageFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFlowCell.h; sourceTree = "<group>"; };
+		168E9A4623A9D02F001C567A /* ImageFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFlowCell.m; sourceTree = "<group>"; };
 		83582A21F270A06E33B10C8D /* Pods_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.debug.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		168E9A4423A9CFC4001C567A /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				168E9A4523A9D020001C567A /* ImageFlowCell.h */,
+				168E9A4623A9D02F001C567A /* ImageFlowCell.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		49B5F95D11B77A2FDDFA3D1F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +221,7 @@
 		F555045423A662B300924B7F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				168E9A4423A9CFC4001C567A /* Layout */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,6 +424,7 @@
 				F555044E23A6625B00924B7F /* UserViewController.m in Sources */,
 				F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */,
 				F555046523A698A100924B7F /* DownloadViewController.m in Sources */,
+				168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */,
 				F555044A23A6620800924B7F /* PhotoViewController.m in Sources */,
 				F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */,
 				F5E94A33238D8140004DE2C6 /* main.m in Sources */,

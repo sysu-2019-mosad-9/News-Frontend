@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PhotoViewController.h"
 
-@interface PhotoViewController()
+@interface PhotoViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
 
@@ -17,7 +17,10 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    [self setup];
+}
+
+- (void)setup {
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     label.text = @"photo";
 
