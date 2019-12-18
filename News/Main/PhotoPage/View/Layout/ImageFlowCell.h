@@ -10,5 +10,13 @@
 #define WaterFlowCell_h
 #import <UIKit/UIKit.h>
 
+@interface ImageFlowCell : UICollectionViewCell
+
+@property (strong, nonatomic) UIImageView * imageView;
+
+- (void)setWithImage:(UIImage *)img;
+
+@end
+
 
 #endif /* WaterFlowCell_h */

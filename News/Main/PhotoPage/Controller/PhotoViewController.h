@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) NSMutableArray<UIImage *> * dataSource;
 
-@property (strong, nonatomic) UICollectionView * imageCollection;
+@property (strong, nonatomic) UICollectionView * collection;
 
 @end
 
