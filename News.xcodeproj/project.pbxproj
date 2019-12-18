@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168E9A4623A9D02F001C567A /* ImageFlowCell.m */; };
 		168E9A4A23AA1CD1001C567A /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 168E9A4923AA1CD1001C567A /* loading.png */; };
+		168E9A4E23AA8E1D001C567A /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168E9A4D23AA8E1D001C567A /* VideoCell.m */; };
 		D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582A21F270A06E33B10C8D /* Pods_News.framework */; };
 		F50BC38523A885250025B874 /* TabCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50BC38423A885250025B874 /* TabCollectionViewController.m */; };
 		F50BC38823A885490025B874 /* ContentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50BC38723A885490025B874 /* ContentPageViewController.m */; };
@@ -39,6 +40,8 @@
 		168E9A4523A9D020001C567A /* ImageFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFlowCell.h; sourceTree = "<group>"; };
 		168E9A4623A9D02F001C567A /* ImageFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFlowCell.m; sourceTree = "<group>"; };
 		168E9A4923AA1CD1001C567A /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		168E9A4C23AA8E0C001C567A /* VideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VideoCell.h; path = "../../../../../../../SYSU-MOSAD-IOSDevelopment/MOSAD_HW3/src/16340129梁俊华/VideoCell.h"; sourceTree = "<group>"; };
+		168E9A4D23AA8E1D001C567A /* VideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VideoCell.m; path = "../../../../../../../SYSU-MOSAD-IOSDevelopment/MOSAD_HW3/src/16340129梁俊华/VideoCell.m"; sourceTree = "<group>"; };
 		83582A21F270A06E33B10C8D /* Pods_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.debug.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +118,15 @@
 				168E9A4923AA1CD1001C567A /* loading.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		168E9A4B23AA8DDF001C567A /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				168E9A4C23AA8E0C001C567A /* VideoCell.h */,
+				168E9A4D23AA8E1D001C567A /* VideoCell.m */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		49B5F95D11B77A2FDDFA3D1F /* Pods */ = {
@@ -248,6 +260,7 @@
 		F555045223A662A000924B7F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				168E9A4B23AA8DDF001C567A /* Layout */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -468,6 +481,7 @@
 				F50BC38B23A898B50025B874 /* TabCollectionViewCell.m in Sources */,
 				F5536D8D23A9350C009A654F /* TabModel.m in Sources */,
 				F555046523A698A100924B7F /* DownloadViewController.m in Sources */,
+				168E9A4E23AA8E1D001C567A /* VideoCell.m in Sources */,
 				168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */,
 				F555044A23A6620800924B7F /* PhotoViewController.m in Sources */,
 				F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */,

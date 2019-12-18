@@ -10,8 +10,13 @@
 #define VideoViewController_h
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "VideoCell.h"
 
 @interface VideoViewController : UIViewController
+
+@property (strong, nonatomic) UICollectionView * videoCollection;
+@property (strong, nonatomic) NSMutableArray<AVPlayer *> * dataSource;
 
 @end
 
