@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SearchViewController.h"
-#import "../View/TitleView.h"
+#import "../View/NavTitleView.h"
 #import "../View/TableViewCell.h"
 #import "Masonry.h"
 
@@ -17,7 +17,7 @@
 {
     TableViewCell * _cell;
 }
-@property (nonatomic, strong) UIView * titleView;
+@property (nonatomic, strong) NavTitleView * navTitleView;
 @property (nonatomic, strong) UISearchController * searchController;
 @property (nonatomic, strong) UITableViewController * tableViewController;
 //@property (nonatomic, strong) UISearchBar * searchBar;
@@ -37,7 +37,7 @@
     self.definesPresentationContext = YES;
     
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.titleView = self.titleView;
+    self.navigationItem.titleView = self.navTitleView;
     
     [self.view addSubview:self.tableViewController.tableView];
     [self.tableViewController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,15 +81,15 @@
     return _resultArr;
 }
 
-- (UIView *)titleView{
-    if (_titleView == nil){
-        _titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        [_titleView addSubview:self.searchController.searchBar];
+- (NavTitleView *)navTitleView{
+    if (_navTitleView == nil){
+        _navTitleView = [[NavTitleView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+        [_navTitleView addSubview:self.searchController.searchBar];
         [self.searchController.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(self.titleView);
+            make.width.height.mas_equalTo(self.navTitleView);
         }];
     }
-    return _titleView;
+    return _navTitleView;
 }
 
 - (UISearchController *)searchController{

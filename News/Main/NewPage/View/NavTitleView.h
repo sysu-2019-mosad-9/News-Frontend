@@ -1,18 +1,18 @@
 //
-//  TitleView.h
+//  NavTitleView.h
 //  News
 //
 //  Created by tplish on 2019/12/16.
 //  Copyright © 2019 Team09. All rights reserved.
 //
 
-#ifndef TitleView_h
-#define TitleView_h
+#ifndef NavTitleView_h
+#define NavTitleView_h
 
 #import <UIKit/UIKit.h>
 
-@interface TitleView : UIView
+@interface NavTitleView : UIView
 
 @end
 
-#endif /* TitleView_h */
+#endif /* NavTitleView_h */
