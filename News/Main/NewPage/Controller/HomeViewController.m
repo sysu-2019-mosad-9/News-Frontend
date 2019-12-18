@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "HomeViewController.h"
-#import "../../Base/Controller/DownloadViewController.h"
 #import "../View/NavTitleView.h"
+#import "../Model/TabModel.h"
 #import "SearchViewController.h"
 #import "TabCollectionViewController.h"
 #import "ContentPageViewController.h"
+#import "Base/Controller/DownloadViewController.h"
+#import "Base/GlobalVariable.h"
+#import "Base/NetRequest.h"
 #import "Masonry.h"
 
 @interface HomeViewController()
@@ -22,6 +25,8 @@
 @property (nonatomic, strong) ContentPageViewController * contentPVC;
 @property (nonatomic, strong) NSMutableArray * tabs;
 @property (nonatomic, strong) NSMutableArray * contents;
+
+@property (nonatomic, strong) TabModel * tabModel;
 @end
 
 @implementation HomeViewController
@@ -89,12 +94,28 @@
     return _contentPVC;
 }
 
+- (TabModel *)tabModel{
+    if (_tabModel == nil){
+        _tabModel = [[TabModel alloc] init];
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        [[NetRequest shareInstance] GET:[BaseUrl stringByAppendingString:@"/news/tabs"] params:nil progress:^(id downloadProgress) {
+        } success:^(id responseObject) {
+            self->_tabModel.len = [[responseObject objectForKey:@"len"] integerValue];
+            self->_tabModel.names = [responseObject objectForKey:@"names"];
+            dispatch_semaphore_signal(sema);
+        } failues:^(id error) {
+            dispatch_semaphore_signal(sema);
+        }];
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    }
+    return _tabModel;
+}
+
 - (NSMutableArray *)tabs{
     if (_tabs == nil){
         _tabs = [NSMutableArray array];
-        for (int i=0; i<20; i++){
-            NSString * str = [NSString stringWithFormat:@"tab%d", i];
-            [_tabs addObject:str];
+        for (int i=0; i<self.tabModel.len; i++){
+            [_tabs addObject:self.tabModel.names[i]];
         }
     }
     return _tabs;
@@ -103,7 +124,7 @@
 - (NSMutableArray *)contents{
     if (_contents == nil){
         _contents = [NSMutableArray array];
-        for (int i=0; i<20; i++){
+        for (int i=0; i<self.tabModel.len; i++){
             double r = (arc4random() % 256);
             double g = (arc4random() % 256);
             double b = (arc4random() % 256);
