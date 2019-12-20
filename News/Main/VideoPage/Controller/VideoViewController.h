@@ -11,7 +11,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "VideoCell.h"
 #import "RHPlayerView.h"
 
 @interface VideoViewController : UIViewController
