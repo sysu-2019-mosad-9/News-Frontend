@@ -12,11 +12,12 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "VideoCell.h"
+#import "RHPlayerView.h"
 
 @interface VideoViewController : UIViewController
-
-@property (strong, nonatomic) UICollectionView * videoCollection;
-@property (strong, nonatomic) NSMutableArray<AVPlayer *> * dataSource;
+@property (nonatomic) RHPlayerView * player;
+@property (strong, nonatomic) UITableView * tableView;
+@property (strong, nonatomic) NSMutableArray<RHVideoModel *> * dataSource;
 
 @end
 
