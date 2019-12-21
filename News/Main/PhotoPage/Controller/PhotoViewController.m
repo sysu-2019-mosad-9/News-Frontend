@@ -29,6 +29,15 @@
     [self setup];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    for (int i = 0; i < MAX_IMG; i++) {
+        self.dataSource[i] = [UIImage imageNamed:@"loading.png"];
+    }
+    [self.collection reloadData];
+    [self downloadImageWithCount:MAX_IMG];
+}
+
 - (void)setup {
     /* Set collection */
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];

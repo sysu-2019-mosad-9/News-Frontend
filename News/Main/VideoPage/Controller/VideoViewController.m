@@ -14,8 +14,9 @@
 #import "Masonry.h"
 
 
+
 #define COLLECTION_CELL_IDENTIFIER @"reuseCell"
-#define MAX_VEDIO 10
+#define MAX_VEDIO 3
 
 
 @interface VideoViewController() <RHPlayerViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -40,6 +41,16 @@
     }
 }
 
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    [self.player playVideoWithVideoId:self.]
+//}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.player pause];
+}
+
 - (void)downloadVideoWithCount {
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -61,6 +72,9 @@
             for (int i = 0; i < MAX_VEDIO; i++) {
                 RHVideoModel * model = [[RHVideoModel alloc] initWithVideoId:[NSString stringWithFormat:@"%03d", i + 1] title:responseObject[@"data"][i][@"title"] url:responseObject[@"data"][i][@"video_link"] currentTime:0];
                 self.dataSource[i] = model;
+                self.imgArr[i] = responseObject[@"data"][i][@"video_preview"];
+                self.goodArr[i] = [NSString stringWithFormat:@"%@", responseObject[@"data"][i][@"n_good"]];
+                self.commentArr[i] = [NSString stringWithFormat:@"%@", responseObject[@"data"][i][@"n_comment"]];
             }
             NSLog(@"Download Complete! Total video = %ld", [self.dataSource count]);
             dispatch_semaphore_signal(sema);
@@ -78,25 +92,7 @@
     });
     
 //    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    NSLog(@"Finish, total video = %ld", [self.dataSource count]);
-    [self.player setVideoModels:self.dataSource playVideoId:@""];
-    [self.tableView reloadData];
-}
-
-- (void)loadData {
-
-    NSArray * titleArr = @[@"视频一", @"视频二", @"视频三", @"视频四"];
-    NSArray * urlArr = @[@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4", @"https://qiniu-vmovier10.vmoviercdn.com/597688f5df943.mp4",
-    @"https://qiniu-vmovier10.vmoviercdn.com/597688f5df943.mp4"];
-
-    for (int i = 0; i < titleArr.count; i++) {
-
-        RHVideoModel * model = [[RHVideoModel alloc] initWithVideoId:[NSString stringWithFormat:@"%03d", i + 1] title:titleArr[i] url:urlArr[i] currentTime:0];
-        [self.dataSource addObject:model];
-        for (int i = 0; i < [self.dataSource count]; i++) {
-            NSLog(@"%@", self.dataSource[i]);
-        }
-    }
+    // NSLog(@"Finish, total video = %ld", [self.dataSource count]);
     [self.player setVideoModels:self.dataSource playVideoId:@""];
     [self.tableView reloadData];
 }
@@ -124,21 +120,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Hello World");
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:COLLECTION_CELL_IDENTIFIER];
+    // NSLog(@"Hello World");
+    // UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:COLLECTION_CELL_IDENTIFIER];
+    VideoCell * cell = [tableView dequeueReusableCellWithIdentifier:COLLECTION_CELL_IDENTIFIER];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row < [_dataSource count]) {
         
         RHVideoModel * model = _dataSource[indexPath.row];
-        cell.textLabel.text = model.title;
+        // cell.textLabel.text = model.title;
+        [cell setupUIWithTitle:model.title WithImage:_imgArr[indexPath.row] WithGood:_goodArr[indexPath.row] WithComment:_commentArr[indexPath.row]
+            WithVideo:model WithPlayer:self.player];
     }
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    RHVideoModel * model = _dataSource[indexPath.row];
-    [_player playVideoWithVideoId:model.videoId];
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    RHVideoModel * model = _dataSource[indexPath.row];
+//    [_player playVideoWithVideoId:model.videoId];
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0f;
 }
 
 #pragma mark - playerViewDelegate
@@ -163,7 +166,7 @@
         UITableView * tableView = [[UITableView alloc] init];
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:COLLECTION_CELL_IDENTIFIER];
+        [tableView registerClass:[VideoCell class] forCellReuseIdentifier:COLLECTION_CELL_IDENTIFIER];
         tableView.tableFooterView = [[UIView alloc] init];
         _tableView = tableView;
     }
@@ -184,6 +187,27 @@
         _dataSource = [NSMutableArray arrayWithCapacity:MAX_VEDIO];
     }
     return _dataSource;
+}
+
+- (NSMutableArray *)imgArr {
+    if (!_imgArr) {
+        _imgArr = [NSMutableArray arrayWithCapacity:MAX_VEDIO];
+    }
+    return _imgArr;
+}
+
+- (NSMutableArray *)goodArr {
+    if (!_goodArr) {
+        _goodArr = [NSMutableArray arrayWithCapacity:MAX_VEDIO];
+    }
+    return _goodArr;
+}
+
+- (NSMutableArray *)commentArr {
+    if (!_commentArr) {
+        _commentArr = [NSMutableArray arrayWithCapacity:MAX_VEDIO];
+    }
+    return _commentArr;
 }
 
 @end
