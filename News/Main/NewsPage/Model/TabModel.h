@@ -10,8 +10,10 @@
 #define TabModel_h
 
 @interface TabModel : NSObject
-@property (nonatomic) NSInteger len;
+@property (nonatomic) NSNumber * len;
 @property (nonatomic, strong) NSArray * names;
+
+- (instancetype)initWithDict:(NSDictionary *)dict;
 @end
 
 #endif /* TabModel_h */

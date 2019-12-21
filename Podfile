@@ -8,6 +8,7 @@ target 'News' do
   # Pods for News
   pod 'Masonry'
   pod 'AFNetworking'
+  pod 'MJRefresh'
   pod 'SDWebImage'
 
 end

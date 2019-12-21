@@ -12,7 +12,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UserViewController : UIViewController
+
+@property (nonatomic, strong) NSString * token;
+
 + (id)shareInstance;
+
 @end
 
 #endif /* UserViewController_h */
