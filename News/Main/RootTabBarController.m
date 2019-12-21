@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "RootTabBarController.h"
+
 #import "NavigationController.h"
-#import "NewPage/Controller/HomeViewController.h"
+#import "NewsPage/Controller/HomeViewController.h"
 #import "VideoPage/Controller/VideoViewController.h"
 #import "PhotoPage/Controller/PhotoViewController.h"
 
@@ -23,16 +24,18 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
         
-    [self addChildVC:[HomeViewController new] withTitle:@"Home" withImage:@"home_tab" withSelectedImage:@"home_tab_selected"];
+    [self addChildVC:[[HomeViewController alloc] init] Title:@"Home" Image:@"home" SelectedImage:@"home_fill"];
     
-    [self addChildVC:[VideoViewController new] withTitle:@"Video" withImage:@"video_tab" withSelectedImage:@"video_tab_selected"];
+    [self addChildVC:[[VideoViewController alloc] init] Title:@"Video" Image:@"video" SelectedImage:@"video_fill"];
     
-    [self addChildVC:[PhotoViewController new] withTitle:@"Photo" withImage:@"photo_tab" withSelectedImage:@"photo_tab_selected"];
+    [self addChildVC:[[PhotoViewController alloc] init] Title:@"Photo" Image:@"photo" SelectedImage:@"photo_fill"];
 }
 
-#pragma mark - private method
 
-- (void)addChildVC:(UIViewController*)childVC withTitle:(NSString*)title withImage:(NSString*)image withSelectedImage:(NSString*)selectedImage{
+- (void)addChildVC:(UIViewController*)childVC
+             Title:(NSString*)title
+             Image:(NSString*)image
+     SelectedImage:(NSString*)selectedImage{
     childVC.title = title;
     childVC.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     childVC.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

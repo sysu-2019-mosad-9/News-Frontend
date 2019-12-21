@@ -9,4 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "GlobalVariable.h"
 
-NSString * const BaseUrl = @"http://localhost:8000/api/v1";
+NSString * const BaseIP = @"http://localhost:8000";
+
+

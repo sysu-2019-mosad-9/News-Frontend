@@ -20,8 +20,6 @@
 @property (nonatomic, strong) NavTitleView * navTitleView;
 @property (nonatomic, strong) UISearchController * searchController;
 @property (nonatomic, strong) UITableViewController * tableViewController;
-//@property (nonatomic, strong) UISearchBar * searchBar;
-//@property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSMutableArray * dataArr;
 @property (nonatomic, strong) NSMutableArray * resultArr;
 @end
@@ -126,32 +124,6 @@
     return _tableViewController;
 }
 
-//- (UISearchBar *)searchBar{
-//    if (_searchBar == nil){
-//        _searchBar = [[UISearchBar alloc] init];
-//        _searchBar.placeholder = @"search";
-//        _searchBar.showsCancelButton = YES;
-//        [_searchBar setShowsScopeBar:YES];
-//        _searchBar.delegate = self;
-//
-//        [_searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"News", @"Video", @"Photo", nil]];
-//    }
-//    return _searchBar;
-//}
-
-//- (UITableView *)tableView{
-//    if (_tableView == nil){
-//        _tableView = [[UITableView alloc] init];
-//
-//        [_tableView registerClass:[TableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
-//
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-//    }
-//    return _tableView;
-//}
-
 #pragma mark -- UITableViewDelegate && UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -178,25 +150,25 @@
 
 #pragma mark -- UISearchControllerDelegate
 
-- (void)willPresentSearchController:(UISearchController *)searchController{
-    NSLog(@"willPresentSearchController");
-}
-
-- (void)didPresentSearchController:(UISearchController *)searchController{
-    NSLog(@"didPresentSearchController");
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController{
-    NSLog(@"willDismissSearchController");
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController{
-    NSLog(@"didDismissSearchController");
-}
-
-- (void)presentSearchController:(UISearchController *)searchController{
-    NSLog(@"presentSearchController");
-}
+//- (void)willPresentSearchController:(UISearchController *)searchController{
+//    NSLog(@"willPresentSearchController");
+//}
+//
+//- (void)didPresentSearchController:(UISearchController *)searchController{
+//    NSLog(@"didPresentSearchController");
+//}
+//
+//- (void)willDismissSearchController:(UISearchController *)searchController{
+//    NSLog(@"willDismissSearchController");
+//}
+//
+//- (void)didDismissSearchController:(UISearchController *)searchController{
+//    NSLog(@"didDismissSearchController");
+//}
+//
+//- (void)presentSearchController:(UISearchController *)searchController{
+//    NSLog(@"presentSearchController");
+//}
 
 #pragma mark -- UISearchBarDelegate
 

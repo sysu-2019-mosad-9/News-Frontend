@@ -16,24 +16,13 @@
 
 @implementation NavigationController
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController{
-    if (self = [super initWithRootViewController:rootViewController]){
-        _rootVC = rootViewController;
-        _rootVC.edgesForExtendedLayout = UIRectEdgeNone;
-        _rootVC.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_tab"] style:UIBarButtonItemStyleDone target:self action:@selector(goToUserPage)];
+// push页面时自动隐藏tabBar
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    // rootViewController也算push，所以需要判断数量
+    if (self.viewControllers.count){
+        viewController.hidesBottomBarWhenPushed = YES;
     }
-    return self;
-}
-
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    
-    
-
-}
-
-- (void)goToUserPage{
-    [_rootVC.navigationController pushViewController:[UserViewController shareInstance] animated:YES];
+    [super pushViewController:viewController animated:animated];
 }
 
 @end
