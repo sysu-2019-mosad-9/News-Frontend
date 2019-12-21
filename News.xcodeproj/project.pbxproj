@@ -1,4 +1,4 @@
-The project ‘News’ is damaged and cannot be opened due to a parse error. Examine the project file for invalid edits or unresolved source control conflicts.// !$*UTF8*$!
+// !$*UTF8*$!
 {
 	archiveVersion = 1;
 	classes = {
