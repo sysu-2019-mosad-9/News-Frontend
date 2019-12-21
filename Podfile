@@ -8,10 +8,7 @@ target 'News' do
   # Pods for News
   pod 'Masonry'
   pod 'AFNetworking'
-<<<<<<< HEAD
   pod 'MJRefresh'
-=======
   pod 'SDWebImage'
->>>>>>> upstream/master
 
 end
