@@ -12,8 +12,8 @@
 
 @interface NewsDetailModel : NSObject
 
-@property (nonatomic, strong) NSString * type;
-@property (nonatomic, strong) NSString * content;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSString * body;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

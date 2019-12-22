@@ -98,16 +98,16 @@
 - (void)refreshTempBlock{
     [self.tempBlock removeAllObjects];
     
-    NSString * url = [PublicIP stringByAppendingFormat:@":8000/api/v1/news/%ld/entries", (long)self.tabID];
+    NSString * url = [BaseIP stringByAppendingFormat:@":8000/api/v1/news/%ld/entries", (long)self.tabID];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     [params setObject:[NSNumber numberWithInt:8] forKey:@"count"];
-    [params setObject:[NSNumber numberWithInt:1] forKey:@"img_most"];
+    [params setObject:[NSNumber numberWithInt:10] forKey:@"img_most"];
     
     [[NetRequest shareInstance] SynGET:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
-        NSNumber * count = [responseObject objectForKey:@"count"];
         NSArray * data = [responseObject objectForKey:@"data"];
-        for (int i=0; i<[count intValue]; i++){
+        
+        for (int i=0; i<data.count; i++){
             NewsModel * model = [[NewsModel alloc] initWithDict:data[i]];
             [self.tempBlock addObject:model];
         }
@@ -130,7 +130,11 @@
 }
 
 - (void)downloadImg:(NSString*)url{
-    if ([self.imgDict objectForKey:url])return;
+    if (url == nil)return;
+    
+    if ([self.imgDict objectForKey:url] != nil && [self.imgDict objectForKey:url]!=NSNull.null)return;
+    
+    [self.imgDict setObject:NSNull.null forKey:url];
     
     NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     __block NSString * cacheImgPath = [cacheDir stringByAppendingFormat:@"/%@", [[url lastPathComponent] stringByDeletingPathExtension]];
@@ -139,20 +143,25 @@
         [self.imgDict setObject:cacheImg forKey:url];
         return;
     }
-    
+    NSLog(@"%@", url);
     NSBlockOperation * operation = [NSBlockOperation blockOperationWithBlock:^{
         NSURL * nsurl = [NSURL URLWithString:url];
         NSData * data = [NSData dataWithContentsOfURL:nsurl];
         cacheImg = [UIImage imageWithData:data];
         
-        [NSOperationQueue.mainQueue addOperationWithBlock:^{
-            [self.imgDict setObject:cacheImg forKey:url];
-            NSFileManager * fileManager = [NSFileManager defaultManager];
-            [fileManager createFileAtPath:cacheImgPath contents:nil attributes:nil];
-            [UIImagePNGRepresentation(cacheImg) writeToFile:cacheImgPath atomically:YES];
+        if (cacheImg == nil){
+            [self.imgDict setObject:NSNull.null forKey:url];
+        }
+        if (cacheImg != nil){
+            [NSOperationQueue.mainQueue addOperationWithBlock:^{
+                [self.imgDict setObject:cacheImg forKey:url];
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+                [fileManager createFileAtPath:cacheImgPath contents:nil attributes:nil];
+                [UIImagePNGRepresentation(cacheImg) writeToFile:cacheImgPath atomically:YES];
 
-            [self.collectionView reloadData];
-        }];
+                [self.collectionView reloadData];
+            }];
+        }
     }];
     
     [self.queue addOperation:operation];
@@ -171,12 +180,20 @@
 - (UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     _cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"newsCollectionViewCell" forIndexPath:indexPath];
     
-    [self downloadImg:[self.newsBlock[indexPath.row] imageLinks][0]];
-    
     _cell.label.text = [self.newsBlock[indexPath.row] title];
     _cell.imageView.image = [UIImage imageNamed:@"loading"];
-    UIImage * image = [self.imgDict objectForKey:[self.newsBlock[indexPath.row] imageLinks][0]];
-    if (image != nil) _cell.imageView.image = image;
+    
+    for (int i=0; i<[self.newsBlock[indexPath.row] imageLinks].count; i++){
+        [self downloadImg:[self.newsBlock[indexPath.row] imageLinks][i]];
+    }
+    
+    UIImage * image = nil;
+    for (int i=0; i<[self.newsBlock[indexPath.row] imageLinks].count; i++){
+        image = [self.imgDict objectForKey:[self.newsBlock[indexPath.row] imageLinks][i]];
+        if ([image isEqual:NSNull.null] == NO) break;
+    }
+    
+    if (image != nil && [image isEqual:NSNull.null]==NO) _cell.imageView.image = image;
     
     return _cell;
 }
@@ -191,7 +208,6 @@
     NSLog(@"select");
     NewsDetailViewController * detailVC = [[NewsDetailViewController alloc] init];
     detailVC.detailUrl = [self.newsBlock[indexPath.row] detailUrl];
-    detailVC.title = [self.newsBlock[indexPath.row] title];
     detailVC.curNav = self.curNav;
     [self.curNav pushViewController:detailVC animated:YES];
 }

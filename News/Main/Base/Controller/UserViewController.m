@@ -66,12 +66,13 @@ static UserViewController * instance;
 - (UIView *)infoPageView{
     if (_infoPageView == nil){
         _infoPageView = [[UIView alloc] initWithFrame:self.view.frame];
+        [self.view addSubview:_infoPageView];
         
         UIImageView * avatar = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"avatar" ] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         
         avatar.layer.cornerRadius = 50;
         avatar.tintColor = UIColor.systemPinkColor;
-        [self.view addSubview:avatar];
+        [_infoPageView addSubview:avatar];
         
         [avatar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.view);
@@ -91,7 +92,7 @@ static UserViewController * instance;
         signout.layer.cornerRadius = 30;
         signout.layer.shadowColor = (__bridge CGColorRef _Nullable)([[ThemeManager shareInstance] shadowColor]);
         signout.layer.shadowRadius = 10;
-        [self.view addSubview:signout];
+        [_infoPageView addSubview:signout];
         
         [signout mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.view);
@@ -112,7 +113,7 @@ static UserViewController * instance;
         UITextField * password = [[MYTextField alloc] init];
         username.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        password.textContentType = UITextContentTypePassword;
+        password.textContentType = UITextContentTypeNewPassword;
         password.secureTextEntry = YES;
         
         UIImageView * usernameIcon = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"user"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
@@ -142,7 +143,7 @@ static UserViewController * instance;
         objc_setAssociatedObject(tap, @"eye", eyeIcon, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         [eyeIcon addGestureRecognizer:tap];
-        
+        	
         [_signInPageView addSubview:username];
         [_signInPageView addSubview:password];
         
@@ -215,9 +216,9 @@ static UserViewController * instance;
         username.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.autocapitalizationType = UITextAutocapitalizationTypeNone;
         rePassword.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        password.textContentType = UITextContentTypePassword;
+        password.textContentType = UITextContentTypeNewPassword;
         password.secureTextEntry = YES;
-        rePassword.textContentType = UITextContentTypePassword;
+        rePassword.textContentType = UITextContentTypeNewPassword;
         rePassword.secureTextEntry = YES;
         
         UIImageView * usernameIcon = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"user"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
@@ -253,6 +254,7 @@ static UserViewController * instance;
         
         objc_setAssociatedObject(signup, @"username", username, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(signup, @"password", password, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(signup, @"rePassword", rePassword, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         [signin addTarget:self action:@selector(goToSignInPageView:) forControlEvents:UIControlEventTouchUpInside];
         [signup addTarget:self action:@selector(signUp:) forControlEvents:UIControlEventTouchUpInside];
@@ -321,13 +323,15 @@ static UserViewController * instance;
 }
 
 - (void)signOut:(UIButton *)button{
-    self.token = nil;
+    [self.infoPageView removeFromSuperview];
+    self.infoPageView = nil;
     [self signInPageView];
+    self.token = nil;
     self.isLogin = NO;
 }
 
 - (void)signIn:(UIButton *)button{
-    NSString * url = [PublicIP stringByAppendingString:@":8081/api/v1/login"];
+    NSString * url = [BaseIP stringByAppendingString:@":8000/api/v1/login"];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     UITextField * username = objc_getAssociatedObject(button, @"username");
     UITextField * password = objc_getAssociatedObject(button, @"password");
@@ -360,10 +364,19 @@ static UserViewController * instance;
 }
 
 - (void)signUp:(UIButton *)button{
-    NSString * url = [PublicIP stringByAppendingString:@":8081/api/v1/users"];
+    NSString * url = [BaseIP stringByAppendingString:@":8000/api/v1/users"];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     UITextField * username = objc_getAssociatedObject(button, @"username");
     UITextField * password = objc_getAssociatedObject(button, @"password");
+    UITextField * rePassword = objc_getAssociatedObject(button, @"rePassword");
+    
+    if ([password.text isEqual:rePassword.text] == NO){
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:@"密码不一致" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
     [params setValue:username.text forKey:@"username"];
     [params setValue:password.text forKey:@"password"];
     

@@ -171,13 +171,14 @@
     [self.loadingView startLoading];
     self.isLoading = YES;
     
-    [[NetRequest shareInstance] GET:[PublicIP stringByAppendingString:@":8000/api/v1/news/tabs"] params:nil progress:^(id downloadProgress) {
+    [[NetRequest shareInstance] GET:[BaseIP stringByAppendingString:@":8000/api/v1/news/tabs"] params:nil progress:^(id downloadProgress) {
     } success:^(id responseObject) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.loadingView stopLoading];
             self.loadingView.hidden = YES;
             self.isLoaded = YES;
             self.isLoading = NO;
+            NSLog(@"%@", responseObject);
             self.tabModel = [[TabModel alloc] initWithDict:responseObject];
             if (self.tabModel.len){
                 [self addChildViewController:self.tabCVC];

@@ -12,4 +12,5 @@
 NSString * const PrivateIP = @"http://localhost";
 NSString * const PublicIP = @"http://47.102.157.223";
 
+NSString * const BaseIP = PrivateIP;
 
