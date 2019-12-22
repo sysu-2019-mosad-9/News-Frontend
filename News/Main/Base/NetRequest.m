@@ -72,8 +72,6 @@ static id _instance;
     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
 }
 
-
-
 - (void)POST:(NSString *)url
       params:(NSMutableDictionary *)params
     progress:(void (^)(id downloadProgress))progress
@@ -81,7 +79,7 @@ static id _instance;
      failues:(void (^)(id error))failure{
       [self.mgr POST:url
     parameters:params
-      progress:^(NSProgress * _Nonnull downloadProgress) {
+      progress:^(NSProgress * downloadProgress) {
           progress(downloadProgress);
       } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
           success(responseObject);

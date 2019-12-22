@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GlobalVariable.h"
 
-NSString * const BaseIP = @"http://localhost:8000";
+NSString * const PrivateIP = @"http://localhost";
+NSString * const PublicIP = @"http://47.102.157.223";
 
 

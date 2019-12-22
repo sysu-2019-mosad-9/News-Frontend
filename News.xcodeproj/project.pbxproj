@@ -49,6 +49,8 @@
 		F5578F5423A7318E008D1BA1 /* NavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5323A7318E008D1BA1 /* NavTitleView.m */; };
 		F5578F5B23A77523008D1BA1 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5A23A77523008D1BA1 /* SearchViewController.m */; };
 		F5578F5E23A78794008D1BA1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5D23A78794008D1BA1 /* TableViewCell.m */; };
+		F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F586905B23ADFD3D006EC2FB /* UIColor+Hex.m */; };
+		F586906223AE1371006EC2FB /* MYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F586906123AE1371006EC2FB /* MYTextField.m */; };
 		F589522923AC9C2B008BA48D /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F589522823AC9C2B008BA48D /* LoadingView.m */; };
 		F5A8ECAF23ACFA9900793027 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8ECAE23ACFA9900793027 /* ThemeManager.m */; };
 		F5CF978D23A6582300B498E7 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF978C23A6582300B498E7 /* RootTabBarController.m */; };
@@ -136,6 +138,10 @@
 		F5578F5A23A77523008D1BA1 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F5578F5C23A7878A008D1BA1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		F5578F5D23A78794008D1BA1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		F586905A23ADFD33006EC2FB /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		F586905B23ADFD3D006EC2FB /* UIColor+Hex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		F586906023AE1363006EC2FB /* MYTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYTextField.h; sourceTree = "<group>"; };
+		F586906123AE1371006EC2FB /* MYTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYTextField.m; sourceTree = "<group>"; };
 		F589522723AC9C1E008BA48D /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F589522823AC9C2B008BA48D /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		F5A8ECAD23ACFA8D00793027 /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 		F555043C23A6612A00924B7F /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F586905923ADFD0B006EC2FB /* Extensions */,
 				F555044B23A6623600924B7F /* Controller */,
 				F555045723A662D000924B7F /* Model */,
 				F555045623A662CC00924B7F /* View */,
@@ -419,6 +426,17 @@
 			children = (
 			);
 			path = LaunchPage;
+			sourceTree = "<group>";
+		};
+		F586905923ADFD0B006EC2FB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F586905A23ADFD33006EC2FB /* UIColor+Hex.h */,
+				F586905B23ADFD3D006EC2FB /* UIColor+Hex.m */,
+				F586906023AE1363006EC2FB /* MYTextField.h */,
+				F586906123AE1371006EC2FB /* MYTextField.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F5E94A14238D813F004DE2C6 = {
@@ -600,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F555044E23A6625B00924B7F /* UserViewController.m in Sources */,
+				F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */,
 				F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */,
 				161D104023ABC5DB00B78052 /* RHPlayerTitleView.m in Sources */,
 				F50BC38B23A898B50025B874 /* TabCollectionViewCell.m in Sources */,
@@ -632,6 +651,7 @@
 				F5536D9723A9414A009A654F /* NetRequest.m in Sources */,
 				F50BC38823A885490025B874 /* ContentPageViewController.m in Sources */,
 				F555044723A661E900924B7F /* VideoViewController.m in Sources */,
+				F586906223AE1371006EC2FB /* MYTextField.m in Sources */,
 				F5536DA023AA0020009A654F /* NewsModel.m in Sources */,
 				F5536D9423A9402F009A654F /* GlobalVariable.m in Sources */,
 				F555044423A661C600924B7F /* HomeViewController.m in Sources */,

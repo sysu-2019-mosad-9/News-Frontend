@@ -12,9 +12,12 @@
 
 #import "../Model/LoginModel.h"
 
+#import "Base/GlobalVariable.h"
 #import "Base/NetRequest.h"
 #import "Base/ThemeManager.h"
 
+
+#import "Base/Extensions/MYTextField.h"
 #import "Masonry.h"
 
 
@@ -49,7 +52,11 @@ static UserViewController * instance;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    if (self.isLogin){
+    // 背景图
+    self.view.layer.contents = (id)[self imageByApplyingAlpha:0.2f image:[UIImage imageNamed:@"bg"]].CGImage;
+
+    
+    if (self.isLogin == YES){
         [self infoPageView];
     } else {
         [self signInPageView];
@@ -60,12 +67,38 @@ static UserViewController * instance;
     if (_infoPageView == nil){
         _infoPageView = [[UIView alloc] initWithFrame:self.view.frame];
         
-//        UIImageView * imageView = [[UIImageView alloc] init];
+        UIImageView * avatar = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"avatar" ] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         
-        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+        avatar.layer.cornerRadius = 50;
+        avatar.tintColor = UIColor.systemPinkColor;
+        [self.view addSubview:avatar];
         
-        label.text = self.token;
+        [avatar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self.view);
+            make.centerY.mas_equalTo(self.view).multipliedBy(0.5);
+            make.width.height.mas_equalTo(100);
+        }];
         
+        UIButton * signout = [[UIButton alloc] init];
+        
+        [signout addTarget:self action:@selector(signOut:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [signout setTitle:@"退出" forState:UIControlStateNormal];
+        
+        signout.titleLabel.font = [UIFont systemFontOfSize:24];
+        
+        signout.backgroundColor = UIColor.systemPinkColor;
+        signout.layer.cornerRadius = 30;
+        signout.layer.shadowColor = (__bridge CGColorRef _Nullable)([[ThemeManager shareInstance] shadowColor]);
+        signout.layer.shadowRadius = 10;
+        [self.view addSubview:signout];
+        
+        [signout mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self.view);
+            make.centerY.mas_equalTo(self.view).multipliedBy(1.5);
+            make.width.mas_equalTo(self.view).multipliedBy(0.6);
+            make.height.mas_equalTo(60);
+        }];
     }
     return _infoPageView;
 }
@@ -75,8 +108,8 @@ static UserViewController * instance;
         _signInPageView = [[UIView alloc] initWithFrame:self.view.frame];
         [self.view addSubview:_signInPageView];
         
-        UITextField * username = [[UITextField alloc] init];
-        UITextField * password = [[UITextField alloc] init];
+        UITextField * username = [[MYTextField alloc] init];
+        UITextField * password = [[MYTextField alloc] init];
         username.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.textContentType = UITextContentTypePassword;
@@ -176,9 +209,9 @@ static UserViewController * instance;
         _signUpPageView = [[UIView alloc] initWithFrame:self.view.frame];
         [self.view addSubview:_signUpPageView];
         
-        UITextField * username = [[UITextField alloc] init];
-        UITextField * password = [[UITextField alloc] init];
-        UITextField * rePassword = [[UITextField alloc] init];
+        UITextField * username = [[MYTextField alloc] init];
+        UITextField * password = [[MYTextField alloc] init];
+        UITextField * rePassword = [[MYTextField alloc] init];
         username.autocapitalizationType = UITextAutocapitalizationTypeNone;
         password.autocapitalizationType = UITextAutocapitalizationTypeNone;
         rePassword.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -287,35 +320,53 @@ static UserViewController * instance;
     [self signUpPageView];
 }
 
+- (void)signOut:(UIButton *)button{
+    self.token = nil;
+    [self signInPageView];
+    self.isLogin = NO;
+}
+
 - (void)signIn:(UIButton *)button{
-    NSString * url = [NSString string];
+    NSString * url = [PublicIP stringByAppendingString:@":8081/api/v1/login"];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    [params setValue:objc_getAssociatedObject(button, @"username") forKey:@"username"];
-    [params setValue:objc_getAssociatedObject(button, @"password") forKey:@"password"];
+    UITextField * username = objc_getAssociatedObject(button, @"username");
+    UITextField * password = objc_getAssociatedObject(button, @"password");
+    [params setValue:username.text forKey:@"username"];
+    [params setValue:password.text forKey:@"password"];
+    
     [[NetRequest shareInstance] POST:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
         LoginModel * model = [[LoginModel alloc] initWithDict:responseObject];
         self.token = model.token;
+        self.isLogin = YES;
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.signInPageView removeFromSuperview];
             self.signInPageView = nil;
             [self infoPageView];
+            
         });
     } failues:^(id error) {
+        NSData * errData = [[error userInfo] valueForKey:@"com.alamofire.serialization.response.error.data"];
+        NSString * errString = [[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding];
+        NSData * data = [errString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary * errDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:[errDict objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     }];
 }
 
 - (void)signUp:(UIButton *)button{
-    NSString * url = @"http://localhost:8081/api/v1/users";
+    NSString * url = [PublicIP stringByAppendingString:@":8081/api/v1/users"];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    
     UITextField * username = objc_getAssociatedObject(button, @"username");
     UITextField * password = objc_getAssociatedObject(button, @"password");
-    
     [params setValue:username.text forKey:@"username"];
     [params setValue:password.text forKey:@"password"];
-    NSLog(@"%@",url);
-    NSLog(@"%@",params);
+    
     [[NetRequest shareInstance] POST:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
         LoginModel * model = [[LoginModel alloc] initWithDict:responseObject];
@@ -327,7 +378,16 @@ static UserViewController * instance;
         });
         NSLog(@"%@",responseObject);
     } failues:^(id error) {
-        NSLog(@"%@",error);
+        NSData * errData = [[error userInfo] valueForKey:@"com.alamofire.serialization.response.error.data"];
+        NSString * errString = [[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding];
+        NSData * data = [errString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary * errDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:[errDict objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     }];
 }
 
@@ -345,6 +405,32 @@ static UserViewController * instance;
         password.secureTextEntry = YES;
         imageView.image = [[UIImage imageNamed:@"eye-close"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
+}
+
+-(UIImage *)imageByApplyingAlpha:(CGFloat )alpha  image:(UIImage*)image
+{
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+     
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+     
+    CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);
+     
+    CGContextScaleCTM(ctx, 1, -1);
+     
+    CGContextTranslateCTM(ctx, 0, -area.size.height);
+     
+    CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
+     
+     
+    CGContextSetAlpha(ctx, alpha);
+     
+    CGContextDrawImage(ctx, area, image.CGImage);
+     
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+     
+    UIGraphicsEndImageContext();
+     
+    return newImage;
 }
 
 @end
