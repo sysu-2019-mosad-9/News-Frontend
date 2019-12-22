@@ -13,7 +13,6 @@
 
 @interface NewsDetailViewController : UIViewController
 @property (nonatomic, strong) NSString * detailUrl;
-@property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) UINavigationController * curNav;
 @end
 
