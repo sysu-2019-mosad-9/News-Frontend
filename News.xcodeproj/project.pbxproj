@@ -25,6 +25,7 @@
 		161D105823ABD70E00B78052 /* video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D104E23ABD70E00B78052 /* video_play@3x.png */; };
 		161D105923ABD70E00B78052 /* video_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D104F23ABD70E00B78052 /* video_pause@2x.png */; };
 		161D105A23ABD70E00B78052 /* video_pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 161D105023ABD70E00B78052 /* video_pause@3x.png */; };
+		1640EAD723ADDDAC005F23E1 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAD623ADDDAC005F23E1 /* VideoCell.m */; };
 		168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168E9A4623A9D02F001C567A /* ImageFlowCell.m */; };
 		168E9A4A23AA1CD1001C567A /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 168E9A4923AA1CD1001C567A /* loading.png */; };
 		D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582A21F270A06E33B10C8D /* Pods_News.framework */; };
@@ -90,6 +91,8 @@
 		161D104E23ABD70E00B78052 /* video_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@3x.png"; sourceTree = "<group>"; };
 		161D104F23ABD70E00B78052 /* video_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_pause@2x.png"; sourceTree = "<group>"; };
 		161D105023ABD70E00B78052 /* video_pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_pause@3x.png"; sourceTree = "<group>"; };
+		1640EAD523ADDD9D005F23E1 /* VideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		1640EAD623ADDDAC005F23E1 /* VideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		168E9A4523A9D020001C567A /* ImageFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFlowCell.h; sourceTree = "<group>"; };
 		168E9A4623A9D02F001C567A /* ImageFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFlowCell.m; sourceTree = "<group>"; };
 		168E9A4923AA1CD1001C567A /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 		F555045223A662A000924B7F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1640EAD523ADDD9D005F23E1 /* VideoCell.h */,
+				1640EAD623ADDDAC005F23E1 /* VideoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F555044E23A6625B00924B7F /* UserViewController.m in Sources */,
+				1640EAD723ADDDAC005F23E1 /* VideoCell.m in Sources */,
 				F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */,
 				F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */,
 				161D104023ABC5DB00B78052 /* RHPlayerTitleView.m in Sources */,
