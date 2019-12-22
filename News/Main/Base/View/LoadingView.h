@@ -16,6 +16,7 @@
 
 - (void)startLoading;
 - (void)stopLoading;
+- (BOOL)isAnimating;
 
 @end
 

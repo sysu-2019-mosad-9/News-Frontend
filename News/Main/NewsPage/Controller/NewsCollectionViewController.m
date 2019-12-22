@@ -16,6 +16,8 @@
 // 新闻详情页
 #import "NewsDetailViewController.h"
 
+
+#import "Base/Extensions/UIColor+Hex.h"
 #import "Base/GlobalVariable.h"
 #import "Base/NetRequest.h"
 
@@ -39,7 +41,7 @@
     self = [super initWithCollectionViewLayout:layout];
     if (self){
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumLineSpacing = 0;
+        layout.minimumLineSpacing = 20;
         layout.minimumInteritemSpacing = 0;
         
         self.collectionView.backgroundColor = UIColor.clearColor;
@@ -54,28 +56,24 @@
     [super viewDidLoad];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = [UIColor colorWithHexString: @"#F6F8FA"];
+    
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        NSLog(@"mj_header");
-        
         [self refreshTempBlock];
         for (int i=0; i<self.tempBlock.count; i++){
             [self.newsBlock insertObject:self.tempBlock[i] atIndex:0];
         }
-
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView reloadData];
         
     }];
     
     self.collectionView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
-        NSLog(@"mj_footer");
-        
         [self refreshTempBlock];
         for (int i=0; i<self.tempBlock.count; i++){
             [self.newsBlock addObject:self.tempBlock[i]];
         }
-        
         [self.collectionView.mj_footer endRefreshing];
         [self.collectionView reloadData];
     }];
@@ -100,12 +98,11 @@
 - (void)refreshTempBlock{
     [self.tempBlock removeAllObjects];
     
-    NSString * url = [BaseIP stringByAppendingFormat:@"/api/v1/news/%ld/entries", (long)self.tabID];
+    NSString * url = [PublicIP stringByAppendingFormat:@":8000/api/v1/news/%ld/entries", (long)self.tabID];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithInt:2] forKey:@"count"];
+    [params setObject:[NSNumber numberWithInt:8] forKey:@"count"];
     [params setObject:[NSNumber numberWithInt:1] forKey:@"img_most"];
     
-    NSLog(@"%@",url);
     [[NetRequest shareInstance] SynGET:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
         NSNumber * count = [responseObject objectForKey:@"count"];
@@ -194,6 +191,7 @@
     NSLog(@"select");
     NewsDetailViewController * detailVC = [[NewsDetailViewController alloc] init];
     detailVC.detailUrl = [self.newsBlock[indexPath.row] detailUrl];
+    detailVC.title = [self.newsBlock[indexPath.row] title];
     detailVC.curNav = self.curNav;
     [self.curNav pushViewController:detailVC animated:YES];
 }

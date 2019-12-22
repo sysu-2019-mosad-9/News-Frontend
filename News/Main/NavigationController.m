@@ -16,6 +16,12 @@
 
 @implementation NavigationController
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.navigationBar.tintColor = UIColor.systemPinkColor;
+}
+
 // push页面时自动隐藏tabBar
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     // rootViewController也算push，所以需要判断数量

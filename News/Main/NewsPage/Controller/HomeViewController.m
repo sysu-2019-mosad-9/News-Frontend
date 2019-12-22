@@ -34,6 +34,8 @@
 
 // 自定义加载视图
 @property (nonatomic, strong) LoadingView * loadingView;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL isLoaded;
 
 // 自定义页面布局
 @property (nonatomic, strong) TabCollectionViewController * tabCVC;
@@ -54,39 +56,14 @@
     
     self.navigationItem.titleView = self.navTitleView;
     self.navigationItem.leftBarButtonItem = self.leftBarBtnItem;
-    self.navigationItem.rightBarButtonItem = self.rightBarBtnItem;
+//    self.navigationItem.rightBarButtonItem = self.rightBarBtnItem;
     
-    [self.view addSubview:self.loadingView];
-    [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self.view);
-        make.width.height.mas_equalTo(100);
-    }];
+    self.isLoading = NO;
+    self.isLoaded = NO;
     
-    [[NetRequest shareInstance] GET:[BaseIP stringByAppendingString:@"/api/v1/news/tabs"] params:nil progress:^(id downloadProgress) {
-    } success:^(id responseObject) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.loadingView stopLoading];
-            self.tabModel = [[TabModel alloc] initWithDict:responseObject];
-            if (self.tabModel.len){
-                [self addChildViewController:self.tabCVC];
-                [self addChildViewController:self.contentPVC];
-                [self.tabCVC configArray:self.tabs TabWeight:120 TabHeight:50 Index:0 Block:^(NSInteger index) {
-                    [self.contentPVC updateIndex:index];
-                }];
-                [self.contentPVC configArray:self.contents Index:0 Block:^(NSInteger index) {
-                    [self.tabCVC updateIndex:index];
-                }];
-            }
-        });
-    } failues:^(id error) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.loadingView stopLoading];
-            
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:@"无法连接到服务器，请确认网络状态" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
-        });
-    }];
+    [self loadView];
+    
+    [self searchNet:nil];
 }
 
 - (NavTitleView *)navTitleView{
@@ -124,7 +101,15 @@
 - (LoadingView *)loadingView{
     if (_loadingView == nil){
         _loadingView = [[LoadingView alloc] init];
-        [_loadingView startLoading];
+        [self.view addSubview:_loadingView];
+        
+        [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self.view);
+        }];
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchNet:)];
+        _loadingView.userInteractionEnabled = YES;
+        [_loadingView addGestureRecognizer:tap];
     }
     return _loadingView;
 }
@@ -181,8 +166,43 @@
     return _contents;
 }
 
+- (void)searchNet:(id)tap{
+    if (self.isLoaded || self.isLoading)return;
+    [self.loadingView startLoading];
+    self.isLoading = YES;
+    
+    [[NetRequest shareInstance] GET:[PublicIP stringByAppendingString:@":8000/api/v1/news/tabs"] params:nil progress:^(id downloadProgress) {
+    } success:^(id responseObject) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.loadingView stopLoading];
+            self.loadingView.hidden = YES;
+            self.isLoaded = YES;
+            self.isLoading = NO;
+            self.tabModel = [[TabModel alloc] initWithDict:responseObject];
+            if (self.tabModel.len){
+                [self addChildViewController:self.tabCVC];
+                [self addChildViewController:self.contentPVC];
+                [self.tabCVC configArray:self.tabs TabWeight:120 TabHeight:50 Index:0 Block:^(NSInteger index) {
+                    [self.contentPVC updateIndex:index];
+                }];
+                [self.contentPVC configArray:self.contents Index:0 Block:^(NSInteger index) {
+                    [self.tabCVC updateIndex:index];
+                }];
+            }
+        });
+    } failues:^(id error) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.loadingView stopLoading];
+            self.isLoading = NO;
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:@"无法连接到服务器，请确认网络状态" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    }];
+}
+
 - (void)goToUserPage{
-    [self.navigationController pushViewController:[[UserViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[UserViewController shareInstance] animated:YES];
 }
 
 - (void)goToSearchPage{

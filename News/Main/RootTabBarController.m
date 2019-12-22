@@ -23,12 +23,14 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.tabBar.tintColor = UIColor.systemPinkColor;
         
-    [self addChildVC:[[HomeViewController alloc] init] Title:@"Home" Image:@"home" SelectedImage:@"home_fill"];
+    [self addChildVC:[[HomeViewController alloc] init] Title:@"Home" Image:@"home" SelectedImage:@"home-fill"];
     
-    [self addChildVC:[[VideoViewController alloc] init] Title:@"Video" Image:@"video" SelectedImage:@"video_fill"];
+    [self addChildVC:[[VideoViewController alloc] init] Title:@"Video" Image:@"video" SelectedImage:@"video-fill"];
     
-    [self addChildVC:[[PhotoViewController alloc] init] Title:@"Photo" Image:@"photo" SelectedImage:@"photo_fill"];
+    [self addChildVC:[[PhotoViewController alloc] init] Title:@"Photo" Image:@"pic" SelectedImage:@"pic-fill"];
 }
 
 
