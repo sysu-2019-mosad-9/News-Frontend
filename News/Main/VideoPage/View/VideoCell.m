@@ -69,13 +69,13 @@
 - (void)makeConstricted {
     UIView * superview = self.contentView;
     [_title makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(superview.right).offset(-10);
+        make.left.equalTo(superview.left).offset(10);
         make.top.equalTo(superview.top).offset(10);
     }];
     
     [_img makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(superview.left).offset(20);
-        make.top.equalTo(superview.top).offset(15);
+        make.left.equalTo(superview.left).offset(10);
+        make.top.equalTo(superview.top).offset(40);
     }];
 }
 
@@ -100,7 +100,7 @@
 //        _loveBtn.layer.cornerRadius = 7.0f;
 //        _loveBtn.layer.masksToBounds = YES;
         [_loveBtn setImage:[UIImage imageNamed:@"Good1.png"] forState:0];
-        [_loveBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, -_loveBtn.imageView.bounds.size.width + 30, 5, 0)];
+        [_loveBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, -_loveBtn.imageView.bounds.size.width + 25, 5, 0)];
         [_loveBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -5, 5, 0)];
 //        [_loveBtn setBackgroundColor:[UIColor colorWithRed:102 / 255.0 green:199 / 255.0 blue:90 / 255.0 alpha:1]];
         [_loveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -154,7 +154,7 @@
 
 - (UIView *)buttonView {
     if (!_buttonView) {
-        _buttonView = [[UIView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 240, 45, 230, 50)];
+        _buttonView = [[UIView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width - 240, 75, 230, 50)];
         // [_buttonView setBackgroundColor:[UIColor greenColor]];
     }
     return _buttonView;

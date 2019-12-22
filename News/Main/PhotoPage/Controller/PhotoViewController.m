@@ -12,7 +12,7 @@
 #import "AFNetworking.h"
 
 #define COLLECTION_CELL_IDENTIFIER @"reuseCell"
-#define MAX_IMG 20
+#define MAX_IMG 8
 
 @interface PhotoViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -50,6 +50,7 @@
     _collection.delegate = self;
     [self.view addSubview:_collection];
     [self downloadImageWithCount:MAX_IMG];
+    [self.collection reloadData];
 }
 
 // Down data from
@@ -58,7 +59,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSString * url = @"http://localhost:8000/api/v1/photo/entries?";
+    NSString * url = @"http://47.102.157.223:8000/api/v1/photo/entries?";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"count"] = [NSString stringWithFormat:@"%ld", newsNum];
 
@@ -68,24 +69,29 @@
         progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // Create a new queue and use it to download images.
+        // dispatch_semaphore_t sema = dispatch_semaphore_create(1);
         dispatch_queue_t dispatchQueue = dispatch_queue_create("download.images", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
+        // dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
         dispatch_group_t dispatchGroup = dispatch_group_create();
         for (int i = 0; i < [responseObject[@"count"] intValue]; i++) {
             dispatch_group_async(dispatchGroup, dispatchQueue, ^{
-                dispatch_async(globalQueue, ^{
-                    NSData * imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:responseObject[@"data"][i][@"image_link"]]];
-                    UIImage * img = [UIImage imageWithData:imgData];
-                    // Process the image.
-                    CGSize newSize = CGSizeMake(197, 220);
-                    UIGraphicsBeginImageContext(newSize);
-                    [img drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-                    UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
-                    UIGraphicsEndImageContext();
-                    self.dataSource[i] = newImage;
-                });
+                //dispatch_async(globalQueue, ^{
+                NSData * imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:responseObject[@"data"][i][@"image_link"]]];
+                UIImage * img = [UIImage imageWithData:imgData];
+                // Process the image.
+                CGSize newSize = CGSizeMake(197, 220);
+                UIGraphicsBeginImageContext(newSize);
+                [img drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+                UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                self.dataSource[i] = newImage;
+                NSLog(@"Download finish %d!", i);
+                    
+                //});
             });
         }
+        // dispatch_semaphore_signal(sema);
+        // dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
             [self.collection reloadData];
             NSLog(@"Download finish!");

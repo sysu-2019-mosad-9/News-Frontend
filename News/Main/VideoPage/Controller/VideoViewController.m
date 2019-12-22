@@ -16,7 +16,7 @@
 
 
 #define COLLECTION_CELL_IDENTIFIER @"reuseCell"
-#define MAX_VEDIO 3
+#define MAX_VEDIO 10
 
 
 @interface VideoViewController() <RHPlayerViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -26,6 +26,7 @@
 @implementation VideoViewController
 
 - (void)viewDidLoad {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [super viewDidLoad];
     // [self addSubViews];
     [self downloadVideoWithCount];
@@ -141,7 +142,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0f;
+    return 120.0f;
 }
 
 #pragma mark - playerViewDelegate
