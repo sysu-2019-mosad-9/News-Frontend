@@ -9,6 +9,7 @@
 #ifndef GlobalVariable_h
 #define GlobalVariable_h
 
-extern NSString * const BaseUrl;
+extern NSString * const PrivateIP;
+extern NSString * const PublicIP;
 
 #endif /* GlobalVariable_h */

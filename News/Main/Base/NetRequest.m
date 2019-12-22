@@ -30,6 +30,8 @@ static id _instance;
     if (_mgr == nil){
         _mgr = [[AFHTTPSessionManager alloc] init];
         _mgr.completionQueue = dispatch_get_global_queue(0, 0);
+        _mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+        _mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     }
     return _mgr;
 }
@@ -50,6 +52,26 @@ static id _instance;
     }];
 }
 
+- (void)SynGET:(NSString *)url
+        params:(NSMutableDictionary *)params
+      progress:(void (^)(id))progress
+       success:(void (^)(id))success
+       failues:(void (^)(id))failure{
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    [self GET:url
+       params:params
+     progress:^(id downloadProgress) {
+        progress(downloadProgress);
+    } success:^(id responseObject) {
+        success(responseObject);
+        dispatch_semaphore_signal(sema);
+    } failues:^(id error) {
+        failure(error);
+        dispatch_semaphore_signal(sema);
+    }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+}
+
 - (void)POST:(NSString *)url
       params:(NSMutableDictionary *)params
     progress:(void (^)(id downloadProgress))progress
@@ -57,7 +79,7 @@ static id _instance;
      failues:(void (^)(id error))failure{
       [self.mgr POST:url
     parameters:params
-      progress:^(NSProgress * _Nonnull downloadProgress) {
+      progress:^(NSProgress * downloadProgress) {
           progress(downloadProgress);
       } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
           success(responseObject);

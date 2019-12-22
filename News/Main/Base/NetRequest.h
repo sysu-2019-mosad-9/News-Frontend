@@ -19,6 +19,12 @@
     success:(void(^)(id responseObject))success
     failues:(void(^)(id error))failure;
 
+- (void)SynGET:(NSString *)url
+        params:(NSMutableDictionary *)params
+      progress:(void(^)(id downloadProgress))progress
+       success:(void(^)(id responseObject))success
+       failues:(void(^)(id error))failure;
+
 - (void)POST:(NSString *)url
       params:(NSMutableDictionary *)params
     progress:(void(^)(id downloadProgress))progress
