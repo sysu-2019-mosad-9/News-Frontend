@@ -16,8 +16,6 @@
 #import "NewsCollectionViewController.h"
 
 #import "Base/Controller/UserViewController.h"
-#import "Base/Controller/SearchViewController.h"
-#import "Base/Controller/DownloadViewController.h"
 #import "Base/View/NavTitleView.h"
 #import "Base/View/LoadingView.h"
 #import "Base/GlobalVariable.h"
@@ -28,9 +26,7 @@
 @interface HomeViewController()
 
 // 自定义导航栏
-@property (nonatomic, strong) NavTitleView * navTitleView;
 @property (nonatomic, strong) UIBarButtonItem * leftBarBtnItem;
-@property (nonatomic, strong) UIBarButtonItem * rightBarBtnItem;
 
 // 自定义加载视图
 @property (nonatomic, strong) LoadingView * loadingView;
@@ -54,9 +50,7 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-//    self.navigationItem.titleView = self.navTitleView;
     self.navigationItem.leftBarButtonItem = self.leftBarBtnItem;
-//    self.navigationItem.rightBarButtonItem = self.rightBarBtnItem;
     
     self.isLoading = NO;
     self.isLoaded = NO;
@@ -66,36 +60,11 @@
     [self searchNet:nil];
 }
 
-- (NavTitleView *)navTitleView{
-    if (_navTitleView == nil){
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToSearchPage)];
-        _navTitleView = [[NavTitleView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        _navTitleView.userInteractionEnabled = YES;
-        [_navTitleView addGestureRecognizer:tap];
-        
-        UISearchBar * bar = [[UISearchBar alloc] init];
-        bar.userInteractionEnabled = NO;
-        [_navTitleView addSubview:bar];
-        
-        [bar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.width.height.mas_equalTo(self.navTitleView);
-        }];
-    }
-    return _navTitleView;
-}
-
 - (UIBarButtonItem *)leftBarBtnItem{
     if (_leftBarBtnItem == nil){
         _leftBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user"] style:UIBarButtonItemStyleDone target:self action:@selector(goToUserPage)];
     }
     return _leftBarBtnItem;
-}
-
-- (UIBarButtonItem *)rightBarBtnItem{
-    if (_rightBarBtnItem == nil){
-        _rightBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home"] style:UIBarButtonItemStyleDone target:self action:@selector(goToDownloadPage)];
-    }
-    return _rightBarBtnItem;
 }
 
 - (LoadingView *)loadingView{
@@ -205,14 +174,6 @@
 
 - (void)goToUserPage{
     [self.navigationController pushViewController:[UserViewController shareInstance] animated:YES];
-}
-
-- (void)goToSearchPage{
-    [self.navigationController pushViewController:[[SearchViewController alloc] init] animated:YES];
-}
-
-- (void)goToDownloadPage{
-    [self.navigationController pushViewController:[[DownloadViewController alloc] init] animated:YES];
 }
 
 @end
