@@ -46,9 +46,7 @@
 		F555044A23A6620800924B7F /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555044923A6620800924B7F /* PhotoViewController.m */; };
 		F555044E23A6625B00924B7F /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555044D23A6625B00924B7F /* UserViewController.m */; };
 		F555045B23A66CF800924B7F /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555045A23A66CF800924B7F /* NavigationController.m */; };
-		F555046523A698A100924B7F /* DownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F555046423A698A100924B7F /* DownloadViewController.m */; };
 		F5578F5423A7318E008D1BA1 /* NavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5323A7318E008D1BA1 /* NavTitleView.m */; };
-		F5578F5B23A77523008D1BA1 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5A23A77523008D1BA1 /* SearchViewController.m */; };
 		F5578F5E23A78794008D1BA1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5578F5D23A78794008D1BA1 /* TableViewCell.m */; };
 		F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F586905B23ADFD3D006EC2FB /* UIColor+Hex.m */; };
 		F586906223AE1371006EC2FB /* MYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F586906123AE1371006EC2FB /* MYTextField.m */; };
@@ -133,12 +131,8 @@
 		F555044D23A6625B00924B7F /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		F555045923A66CE900924B7F /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		F555045A23A66CF800924B7F /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
-		F555046323A6989500924B7F /* DownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
-		F555046423A698A100924B7F /* DownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadViewController.m; sourceTree = "<group>"; };
 		F5578F5323A7318E008D1BA1 /* NavTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTitleView.m; sourceTree = "<group>"; };
 		F5578F5523A731AE008D1BA1 /* NavTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTitleView.h; sourceTree = "<group>"; };
-		F5578F5923A77518008D1BA1 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		F5578F5A23A77523008D1BA1 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F5578F5C23A7878A008D1BA1 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		F5578F5D23A78794008D1BA1 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		F586905A23ADFD33006EC2FB /* UIColor+Hex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -340,10 +334,6 @@
 			children = (
 				F555044C23A6624F00924B7F /* UserViewController.h */,
 				F555044D23A6625B00924B7F /* UserViewController.m */,
-				F555046323A6989500924B7F /* DownloadViewController.h */,
-				F555046423A698A100924B7F /* DownloadViewController.m */,
-				F5578F5923A77518008D1BA1 /* SearchViewController.h */,
-				F5578F5A23A77523008D1BA1 /* SearchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -632,7 +622,6 @@
 				F5536DA323AA1E67009A654F /* NewsDetailViewController.m in Sources */,
 				161D103C23ABC5DB00B78052 /* RHPlayerLayerView.m in Sources */,
 				161D103F23ABC5DB00B78052 /* RHProgressSlider.m in Sources */,
-				F555046523A698A100924B7F /* DownloadViewController.m in Sources */,
 				168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */,
 				F555044A23A6620800924B7F /* PhotoViewController.m in Sources */,
 				F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */,
@@ -640,7 +629,6 @@
 				F5E94A33238D8140004DE2C6 /* main.m in Sources */,
 				F5536D9A23A9FD41009A654F /* NewsCollectionViewController.m in Sources */,
 				161D104223ABC5DB00B78052 /* RHPlayerFailedView.m in Sources */,
-				F5578F5B23A77523008D1BA1 /* SearchViewController.m in Sources */,
 				F502DAFA23ACE7B80024049F /* LoginModel.m in Sources */,
 				F5536DA623AA2142009A654F /* NewsDetailModel.m in Sources */,
 				F50BC38523A885250025B874 /* TabCollectionViewController.m in Sources */,

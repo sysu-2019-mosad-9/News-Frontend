@@ -23,8 +23,6 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self){
-        self.userInteractionEnabled = YES;
-        
         [self activityIndicatorView];
         
         [self tip];
@@ -34,12 +32,14 @@
 
 - (UIActivityIndicatorView *)activityIndicatorView{
     if (_activityIndicatorView == nil){
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] init];
+//        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
         _activityIndicatorView.hidesWhenStopped = YES;
-        _activityIndicatorView.userInteractionEnabled = YES;
+        _activityIndicatorView.userInteractionEnabled = NO;
         [self addSubview:_activityIndicatorView];
         [_activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(self);
+//            make.center.mas_equalTo(self);
+            make.size.mas_equalTo(self);
         }];
     }
     return _activityIndicatorView;
@@ -53,10 +53,7 @@
         _tip.hidden = YES;
         [self addSubview:_tip];
         [_tip mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self);
-            make.top.mas_equalTo(self.activityIndicatorView).mas_offset(200);
-            make.width.mas_equalTo(100);
-            make.height.mas_offset(50);
+            make.center.mas_equalTo(self);
         }];
     }
     return _tip;

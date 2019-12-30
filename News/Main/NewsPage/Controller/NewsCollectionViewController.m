@@ -195,8 +195,25 @@
     
     if (image != nil && [image isEqual:NSNull.null]==NO) _cell.imageView.image = image;
     
+    UILongPressGestureRecognizer* longpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longpress:)];
+    longpgr.minimumPressDuration = 1.0;
+    longpgr.view.tag = indexPath.row;
+    [_cell addGestureRecognizer:longpgr];
+    
     return _cell;
 }
+
+- (void)longpress:(UILongPressGestureRecognizer*) longpgr{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:@"确定删除吗" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            id obj = [self.newsBlock objectAtIndex:longpgr.view.tag];
+            [self.newsBlock removeObject:obj];
+            [self.collectionView reloadData];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark UICollectionViewDelegate
 

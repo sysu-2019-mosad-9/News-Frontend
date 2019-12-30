@@ -54,7 +54,7 @@
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.navigationItem.titleView = self.navTitleView;
+//    self.navigationItem.titleView = self.navTitleView;
     self.navigationItem.leftBarButtonItem = self.leftBarBtnItem;
 //    self.navigationItem.rightBarButtonItem = self.rightBarBtnItem;
     
@@ -105,11 +105,10 @@
         
         [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(self.view);
+            make.width.height.mas_equalTo(50);
         }];
         
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchNet:)];
-        _loadingView.userInteractionEnabled = YES;
-        [_loadingView addGestureRecognizer:tap];
+        [_loadingView addTarget:self action:@selector(searchNet:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loadingView;
 }
@@ -166,7 +165,9 @@
     return _contents;
 }
 
-- (void)searchNet:(id)tap{
+- (void)searchNet:(id)btn{
+    NSLog(@"GG");
+    
     if (self.isLoaded || self.isLoading)return;
     [self.loadingView startLoading];
     self.isLoading = YES;

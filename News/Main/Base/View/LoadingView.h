@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoadingView : UIView
+@interface LoadingView : UIButton
 
 - (void)startLoading;
 - (void)stopLoading;

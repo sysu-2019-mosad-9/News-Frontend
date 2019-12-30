@@ -81,18 +81,7 @@
         
         
         _html = [_html stringByAppendingFormat:@"<h1>%@</h1><hr>", self.model.title];
-        _html = [_html stringByAppendingString:self.model.body];
-        
-//        _html = [_html stringByAppendingFormat:@"<h1>%@</h1><hr>", self.title];
-        
-//        for (int i=0; i<self.data.count; i++){
-//            NewsDetailModel * model = [[NewsDetailModel alloc] initWithDict:self.data[i]];
-//            if ([model.type  isEqual: @"typography"]){
-//                _html = [_html stringByAppendingFormat:@"<p>%@</p>", model.content];
-//            } else if ([model.type isEqual:@"image"]){
-//                _html = [_html stringByAppendingFormat:@"<img style='width:auto;height:auto; max-width:100%%' src='%@'>", model.content];
-//            }
-//        }
+        if (self.model.body != nil) _html = [_html stringByAppendingString:self.model.body];
         _html = [_html stringByAppendingString:@"</body>\n"];
         _html = [_html stringByAppendingString:@"</html>\n"];
     }
