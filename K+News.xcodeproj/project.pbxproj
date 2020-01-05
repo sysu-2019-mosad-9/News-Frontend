@@ -51,6 +51,8 @@
 		F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F586905B23ADFD3D006EC2FB /* UIColor+Hex.m */; };
 		F586906223AE1371006EC2FB /* MYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F586906123AE1371006EC2FB /* MYTextField.m */; };
 		F589522923AC9C2B008BA48D /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F589522823AC9C2B008BA48D /* LoadingView.m */; };
+		F58A539723C1CED800EF6AF8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A539623C1CED800EF6AF8 /* SearchViewController.m */; };
+		F58A539A23C1D9CD00EF6AF8 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A539923C1D9CD00EF6AF8 /* SearchModel.m */; };
 		F5A8ECAF23ACFA9900793027 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8ECAE23ACFA9900793027 /* ThemeManager.m */; };
 		F5CF978D23A6582300B498E7 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF978C23A6582300B498E7 /* RootTabBarController.m */; };
 		F5E94A22238D8140004DE2C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E94A21238D8140004DE2C6 /* AppDelegate.m */; };
@@ -141,11 +143,15 @@
 		F586906123AE1371006EC2FB /* MYTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYTextField.m; sourceTree = "<group>"; };
 		F589522723AC9C1E008BA48D /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F589522823AC9C2B008BA48D /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F58A539523C1CEC600EF6AF8 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		F58A539623C1CED800EF6AF8 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		F58A539823C1D9C200EF6AF8 /* SearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		F58A539923C1D9CD00EF6AF8 /* SearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		F5A8ECAD23ACFA8D00793027 /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		F5A8ECAE23ACFA9900793027 /* ThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		F5CF978B23A6580F00B498E7 /* RootTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		F5CF978C23A6582300B498E7 /* RootTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
-		F5E94A1D238D8140004DE2C6 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5E94A1D238D8140004DE2C6 /* K+News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "K+News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5E94A20238D8140004DE2C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F5E94A21238D8140004DE2C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F5E94A23238D8140004DE2C6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -334,6 +340,8 @@
 			children = (
 				F555044C23A6624F00924B7F /* UserViewController.h */,
 				F555044D23A6625B00924B7F /* UserViewController.m */,
+				F58A539523C1CEC600EF6AF8 /* SearchViewController.h */,
+				F58A539623C1CED800EF6AF8 /* SearchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -412,15 +420,10 @@
 			children = (
 				F502DAF823ACE78F0024049F /* LoginModel.h */,
 				F502DAF923ACE7B80024049F /* LoginModel.m */,
+				F58A539823C1D9C200EF6AF8 /* SearchModel.h */,
+				F58A539923C1D9CD00EF6AF8 /* SearchModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F555045823A6634D00924B7F /* LaunchPage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LaunchPage;
 			sourceTree = "<group>";
 		};
 		F586905923ADFD0B006EC2FB /* Extensions */ = {
@@ -437,7 +440,7 @@
 		F5E94A14238D813F004DE2C6 = {
 			isa = PBXGroup;
 			children = (
-				F5E94A1F238D8140004DE2C6 /* News */,
+				F5E94A1F238D8140004DE2C6 /* K+News */,
 				F5E94A1E238D8140004DE2C6 /* Products */,
 				49B5F95D11B77A2FDDFA3D1F /* Pods */,
 				6FE413D21ECC7FF4AD4C7106 /* Frameworks */,
@@ -447,12 +450,12 @@
 		F5E94A1E238D8140004DE2C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5E94A1D238D8140004DE2C6 /* News.app */,
+				F5E94A1D238D8140004DE2C6 /* K+News.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F5E94A1F238D8140004DE2C6 /* News */ = {
+		F5E94A1F238D8140004DE2C6 /* K+News */ = {
 			isa = PBXGroup;
 			children = (
 				F5E94A3C238D84FE004DE2C6 /* Main */,
@@ -468,7 +471,7 @@
 				F5E94A31238D8140004DE2C6 /* Info.plist */,
 				F5E94A32238D8140004DE2C6 /* main.m */,
 			);
-			path = News;
+			path = "K+News";
 			sourceTree = "<group>";
 		};
 		F5E94A3C238D84FE004DE2C6 /* Main */ = {
@@ -479,7 +482,6 @@
 				F555045923A66CE900924B7F /* NavigationController.h */,
 				F555045A23A66CF800924B7F /* NavigationController.m */,
 				F555043C23A6612A00924B7F /* Base */,
-				F555045823A6634D00924B7F /* LaunchPage */,
 				F555043523A6602800924B7F /* NewsPage */,
 				F555043A23A660B400924B7F /* VideoPage */,
 				F555043B23A660CD00924B7F /* PhotoPage */,
@@ -490,9 +492,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F5E94A1C238D8140004DE2C6 /* News */ = {
+		F5E94A1C238D8140004DE2C6 /* K+News */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F5E94A36238D8140004DE2C6 /* Build configuration list for PBXNativeTarget "News" */;
+			buildConfigurationList = F5E94A36238D8140004DE2C6 /* Build configuration list for PBXNativeTarget "K+News" */;
 			buildPhases = (
 				E3322FC5B3BF70542EDA9B64 /* [CP] Check Pods Manifest.lock */,
 				F5E94A19238D8140004DE2C6 /* Sources */,
@@ -504,9 +506,9 @@
 			);
 			dependencies = (
 			);
-			name = News;
+			name = "K+News";
 			productName = News;
-			productReference = F5E94A1D238D8140004DE2C6 /* News.app */;
+			productReference = F5E94A1D238D8140004DE2C6 /* K+News.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -523,7 +525,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F5E94A18238D8140004DE2C6 /* Build configuration list for PBXProject "News" */;
+			buildConfigurationList = F5E94A18238D8140004DE2C6 /* Build configuration list for PBXProject "K+News" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -536,7 +538,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F5E94A1C238D8140004DE2C6 /* News */,
+				F5E94A1C238D8140004DE2C6 /* K+News */,
 			);
 		};
 /* End PBXProject section */
@@ -613,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F555044E23A6625B00924B7F /* UserViewController.m in Sources */,
+				F58A539723C1CED800EF6AF8 /* SearchViewController.m in Sources */,
 				1640EAD723ADDDAC005F23E1 /* VideoCell.m in Sources */,
 				F586905C23ADFD3D006EC2FB /* UIColor+Hex.m in Sources */,
 				F5E94A28238D8140004DE2C6 /* ViewController.m in Sources */,
@@ -634,6 +637,7 @@
 				F50BC38523A885250025B874 /* TabCollectionViewController.m in Sources */,
 				F5536D9D23A9FE3C009A654F /* NewsCollectionViewCell.m in Sources */,
 				F5A8ECAF23ACFA9900793027 /* ThemeManager.m in Sources */,
+				F58A539A23C1D9CD00EF6AF8 /* SearchModel.m in Sources */,
 				161D103D23ABC5DB00B78052 /* RHPlayerToolView.m in Sources */,
 				F5578F5E23A78794008D1BA1 /* TableViewCell.m in Sources */,
 				F589522923AC9C2B008BA48D /* LoadingView.m in Sources */,
@@ -725,6 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -777,6 +782,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -791,13 +797,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = News/Info.plist;
+				INFOPLIST_FILE = "K+News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Team09.News;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "K+News";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "${SRCROOT}/**";
 			};
@@ -809,13 +815,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = News/Info.plist;
+				INFOPLIST_FILE = "K+News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Team09.News;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "K+News";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -823,7 +829,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F5E94A18238D8140004DE2C6 /* Build configuration list for PBXProject "News" */ = {
+		F5E94A18238D8140004DE2C6 /* Build configuration list for PBXProject "K+News" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5E94A34238D8140004DE2C6 /* Debug */,
@@ -832,7 +838,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F5E94A36238D8140004DE2C6 /* Build configuration list for PBXNativeTarget "News" */ = {
+		F5E94A36238D8140004DE2C6 /* Build configuration list for PBXNativeTarget "K+News" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5E94A37238D8140004DE2C6 /* Debug */,

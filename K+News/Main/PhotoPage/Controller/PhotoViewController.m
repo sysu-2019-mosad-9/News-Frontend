@@ -11,6 +11,8 @@
 #import "ImageFlowCell.h"
 #import "AFNetworking.h"
 
+#import "GlobalVariable.h"
+
 #define COLLECTION_CELL_IDENTIFIER @"reuseCell"
 #define MAX_IMG 8
 
@@ -59,7 +61,9 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSString * url = @"http://47.102.157.223:8000/api/v1/photo/entries?";
+    NSString * url = [BaseIP stringByAppendingString:@":8000/api/v1/photo/entries"];
+    
+//    NSString * url = @"http://47.102.157.223:8000/api/v1/photo/entries?";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"count"] = [NSString stringWithFormat:@"%ld", newsNum];
 

@@ -16,6 +16,7 @@
 #import "NewsCollectionViewController.h"
 
 #import "Base/Controller/UserViewController.h"
+#import "Base/Controller/SearchViewController.h"
 #import "Base/View/NavTitleView.h"
 #import "Base/View/LoadingView.h"
 #import "Base/GlobalVariable.h"
@@ -27,6 +28,7 @@
 
 // 自定义导航栏
 @property (nonatomic, strong) UIBarButtonItem * leftBarBtnItem;
+@property (nonatomic, strong) UIBarButtonItem * rightBarBtnItem;
 
 // 自定义加载视图
 @property (nonatomic, strong) LoadingView * loadingView;
@@ -51,6 +53,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.leftBarButtonItem = self.leftBarBtnItem;
+    self.navigationItem.rightBarButtonItem = self.rightBarBtnItem;
     
     self.isLoading = NO;
     self.isLoaded = NO;
@@ -65,6 +68,13 @@
         _leftBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"user"] style:UIBarButtonItemStyleDone target:self action:@selector(goToUserPage)];
     }
     return _leftBarBtnItem;
+}
+
+- (UIBarButtonItem *) rightBarBtnItem {
+    if (_rightBarBtnItem == nil) {
+        _rightBarBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStyleDone target:self action:@selector(goToSearchPage)];
+    }
+    return _rightBarBtnItem;
 }
 
 - (LoadingView *)loadingView{
@@ -134,9 +144,7 @@
     return _contents;
 }
 
-- (void)searchNet:(id)btn{
-    NSLog(@"GG");
-    
+- (void)searchNet:(id)btn{    
     if (self.isLoaded || self.isLoading)return;
     [self.loadingView startLoading];
     self.isLoading = YES;
@@ -174,6 +182,10 @@
 
 - (void)goToUserPage{
     [self.navigationController pushViewController:[UserViewController shareInstance] animated:YES];
+}
+
+- (void)goToSearchPage{
+    [self.navigationController pushViewController:[SearchViewController new] animated:YES];
 }
 
 @end

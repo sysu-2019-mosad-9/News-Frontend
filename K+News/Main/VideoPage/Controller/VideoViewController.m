@@ -13,6 +13,8 @@
 #import "AFNetworking.h"
 #import "Masonry.h"
 
+#import "GlobalVariable.h"
+
 
 
 #define COLLECTION_CELL_IDENTIFIER @"reuseCell"
@@ -57,7 +59,8 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSString * URL = @"http://localhost:8000/api/v1/video/entries?";
+    NSString * URL = [BaseIP stringByAppendingString:@":8000/api/v1/video/entries?"];
+//    NSString * URL = @"http://localhost:8000/api/v1/video/entries?";
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     params[@"count"] = [NSString stringWithFormat:@"%d", MAX_VEDIO];
     // _dataSource = [NSMutableArray arrayWithCapacity:count];

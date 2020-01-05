@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5E94A1C238D8140004DE2C6"
-               BuildableName = "News.app"
-               BlueprintName = "News"
-               ReferencedContainer = "container:News.xcodeproj">
+               BuildableName = "K+News.app"
+               BlueprintName = "K+News"
+               ReferencedContainer = "container:K+News.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5E94A1C238D8140004DE2C6"
-            BuildableName = "News.app"
-            BlueprintName = "News"
-            ReferencedContainer = "container:News.xcodeproj">
+            BuildableName = "K+News.app"
+            BlueprintName = "K+News"
+            ReferencedContainer = "container:K+News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5E94A1C238D8140004DE2C6"
-            BuildableName = "News.app"
-            BlueprintName = "News"
-            ReferencedContainer = "container:News.xcodeproj">
+            BuildableName = "K+News.app"
+            BlueprintName = "K+News"
+            ReferencedContainer = "container:K+News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
