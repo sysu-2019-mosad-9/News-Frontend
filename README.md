@@ -19,3 +19,7 @@ pod install
 ```
 
 Open `News.xcworkspace` with XCode or some other IDE
+
+## Setting
+
+- `/Base/GlobalVariable.m`
