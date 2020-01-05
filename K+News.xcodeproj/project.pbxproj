@@ -28,7 +28,7 @@
 		1640EAD723ADDDAC005F23E1 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAD623ADDDAC005F23E1 /* VideoCell.m */; };
 		168E9A4723A9D02F001C567A /* ImageFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168E9A4623A9D02F001C567A /* ImageFlowCell.m */; };
 		168E9A4A23AA1CD1001C567A /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 168E9A4923AA1CD1001C567A /* loading.png */; };
-		D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83582A21F270A06E33B10C8D /* Pods_News.framework */; };
+		45BB6266C48CF1D9B5ED0084 /* Pods_K_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32718B5C2D58F7C7A51EDB47 /* Pods_K_News.framework */; };
 		F502DAFA23ACE7B80024049F /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F502DAF923ACE7B80024049F /* LoginModel.m */; };
 		F50BC38523A885250025B874 /* TabCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50BC38423A885250025B874 /* TabCollectionViewController.m */; };
 		F50BC38823A885490025B874 /* ContentPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F50BC38723A885490025B874 /* ContentPageViewController.m */; };
@@ -96,9 +96,11 @@
 		168E9A4523A9D020001C567A /* ImageFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFlowCell.h; sourceTree = "<group>"; };
 		168E9A4623A9D02F001C567A /* ImageFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFlowCell.m; sourceTree = "<group>"; };
 		168E9A4923AA1CD1001C567A /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
-		83582A21F270A06E33B10C8D /* Pods_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32718B5C2D58F7C7A51EDB47 /* Pods_K_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_K_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9AB2954D161CD7E39E3CAE0 /* Pods-K+News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-K+News.debug.xcconfig"; path = "Target Support Files/Pods-K+News/Pods-K+News.debug.xcconfig"; sourceTree = "<group>"; };
 		CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
 		EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.debug.xcconfig"; path = "Target Support Files/Pods-News/Pods-News.debug.xcconfig"; sourceTree = "<group>"; };
+		F2C5F45C3130F8267FD31B6F /* Pods-K+News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-K+News.release.xcconfig"; path = "Target Support Files/Pods-K+News/Pods-K+News.release.xcconfig"; sourceTree = "<group>"; };
 		F502DAF823ACE78F0024049F /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		F502DAF923ACE7B80024049F /* LoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		F50BC38323A885140025B874 /* TabCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabCollectionViewController.h; sourceTree = "<group>"; };
@@ -170,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8299D336728AFF56C466A79 /* Pods_News.framework in Frameworks */,
+				45BB6266C48CF1D9B5ED0084 /* Pods_K_News.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +242,8 @@
 			children = (
 				EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */,
 				CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */,
+				B9AB2954D161CD7E39E3CAE0 /* Pods-K+News.debug.xcconfig */,
+				F2C5F45C3130F8267FD31B6F /* Pods-K+News.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -247,7 +251,7 @@
 		6FE413D21ECC7FF4AD4C7106 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83582A21F270A06E33B10C8D /* Pods_News.framework */,
+				32718B5C2D58F7C7A51EDB47 /* Pods_K_News.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -574,15 +578,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-News/Pods-News-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-K+News/Pods-K+News-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-News/Pods-News-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-K+News/Pods-K+News-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-News/Pods-News-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-K+News/Pods-K+News-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3322FC5B3BF70542EDA9B64 /* [CP] Check Pods Manifest.lock */ = {
@@ -600,7 +604,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-News-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-K+News-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -793,7 +797,7 @@
 		};
 		F5E94A37238D8140004DE2C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC2FFBC682CC8B5F5FAA38DF /* Pods-News.debug.xcconfig */;
+			baseConfigurationReference = B9AB2954D161CD7E39E3CAE0 /* Pods-K+News.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -811,7 +815,7 @@
 		};
 		F5E94A38238D8140004DE2C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF07B7EFD7A96E769FB0B089 /* Pods-News.release.xcconfig */;
+			baseConfigurationReference = F2C5F45C3130F8267FD31B6F /* Pods-K+News.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
