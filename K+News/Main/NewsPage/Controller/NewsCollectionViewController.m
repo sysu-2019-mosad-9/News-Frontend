@@ -131,7 +131,7 @@
 
 - (void)downloadImg:(NSString*)url{
     if (url == nil)return;
-    
+    NSLog(@"Will download image at url: %@", url);
     if ([self.imgDict objectForKey:url] != nil && [self.imgDict objectForKey:url]!=NSNull.null)return;
     
     [self.imgDict setObject:NSNull.null forKey:url];
@@ -143,7 +143,6 @@
         [self.imgDict setObject:cacheImg forKey:url];
         return;
     }
-    NSLog(@"%@", url);
     NSBlockOperation * operation = [NSBlockOperation blockOperationWithBlock:^{
         NSURL * nsurl = [NSURL URLWithString:url];
         NSData * data = [NSData dataWithContentsOfURL:nsurl];
@@ -194,7 +193,8 @@
     }
     
     if (image != nil && [image isEqual:NSNull.null]==NO) _cell.imageView.image = image;
-    
+    else _cell.imageView.image = [UIImage imageNamed:@"no-images"];
+
     UILongPressGestureRecognizer* longpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longpress:)];
     longpgr.minimumPressDuration = 1.0;
     longpgr.view.tag = indexPath.row;
@@ -222,7 +222,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"select");
+    //NSLog(@"Select collectionView item at indexPath: %@", indexPath);
     NewsDetailViewController * detailVC = [[NewsDetailViewController alloc] init];
     detailVC.detailUrl = [self.newsBlock[indexPath.row] detailUrl];
     detailVC.curNav = self.curNav;

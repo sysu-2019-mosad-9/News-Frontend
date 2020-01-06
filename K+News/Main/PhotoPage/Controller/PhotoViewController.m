@@ -63,7 +63,6 @@
     
     NSString * url = [BaseIP stringByAppendingString:@":8000/api/v1/photo/entries"];
     
-//    NSString * url = @"http://47.102.157.223:8000/api/v1/photo/entries?";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"count"] = [NSString stringWithFormat:@"%ld", newsNum];
 
@@ -79,8 +78,12 @@
         dispatch_group_t dispatchGroup = dispatch_group_create();
         for (int i = 0; i < [responseObject[@"count"] intValue]; i++) {
             dispatch_group_async(dispatchGroup, dispatchQueue, ^{
-                //dispatch_async(globalQueue, ^{
-                NSData * imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:responseObject[@"data"][i][@"image_link"]]];
+                NSString *imgUrl = responseObject[@"data"][i][@"image_link"];
+                if (![imgUrl hasPrefix:@"http://"]) {
+                    imgUrl = [NSString stringWithFormat:@"http://%@",imgUrl];
+                }
+                NSData * imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
+                NSLog(@"Will download image link: %@", responseObject[@"data"][i][@"image_link"]);
                 UIImage * img = [UIImage imageWithData:imgData];
                 // Process the image.
                 CGSize newSize = CGSizeMake(197, 220);
@@ -89,16 +92,14 @@
                 UIImage * newImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
                 self.dataSource[i] = newImage;
-                NSLog(@"Download finish %d!", i);
-                    
-                //});
+                // NSLog(@"Download finish %d!", i);
             });
         }
         // dispatch_semaphore_signal(sema);
         // dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), ^{
             [self.collection reloadData];
-            NSLog(@"Download finish!");
+            //NSLog(@"Download finish!");
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Request fail, reasons = %@", error);

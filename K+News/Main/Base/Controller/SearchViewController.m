@@ -95,7 +95,7 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"%@", searchBar.text);
+    NSLog(@"Will search text: %@", searchBar.text);
     
     [self.resArr removeAllObjects];
     
@@ -119,7 +119,7 @@
             }
             [self.tableView reloadData];
         });
-        NSLog(@"%@", data);
+        NSLog(@"Search request result: %@", data);
     } failues:^(id error) {
         SearchModel * model = [[SearchModel alloc] init];
         model.title = @"找不到呢";
@@ -128,7 +128,7 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        NSLog(@"%@", error);
+        NSLog(@"Search failed, err: %@", error);
     }];
 }
 

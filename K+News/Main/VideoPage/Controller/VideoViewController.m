@@ -80,7 +80,7 @@
                 self.goodArr[i] = [NSString stringWithFormat:@"%@", responseObject[@"data"][i][@"n_good"]];
                 self.commentArr[i] = [NSString stringWithFormat:@"%@", responseObject[@"data"][i][@"n_comment"]];
             }
-            NSLog(@"Download Complete! Total video = %ld", [self.dataSource count]);
+            NSLog(@"Download Complete! Total video count = %ld", [self.dataSource count]);
             dispatch_semaphore_signal(sema);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"Connect to website fail, error = %@", error);
@@ -89,14 +89,14 @@
         
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Finish, total video = %ld", [self.dataSource count]);
+            NSLog(@"Finished, total video count = %ld", [self.dataSource count]);
             [self.player setVideoModels:self.dataSource playVideoId:@""];
             [self.tableView reloadData];
         });
     });
     
 //    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    // NSLog(@"Finish, total video = %ld", [self.dataSource count]);
+    // NSLog(@"Finished, total video count = %ld", [self.dataSource count]);
     [self.player setVideoModels:self.dataSource playVideoId:@""];
     [self.tableView reloadData];
 }
@@ -124,7 +124,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // NSLog(@"Hello World");
     // UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:COLLECTION_CELL_IDENTIFIER];
     VideoCell * cell = [tableView dequeueReusableCellWithIdentifier:COLLECTION_CELL_IDENTIFIER];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

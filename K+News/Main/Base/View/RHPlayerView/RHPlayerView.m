@@ -321,7 +321,7 @@
         
         if (playerItem.status == AVPlayerItemStatusReadyToPlay) {
             
-            NSLog(@"playerItem is ready");
+            NSLog(@"AVPlayerItem is ready");
             
             [self.player play];
             self.link.paused = NO;
@@ -338,8 +338,7 @@
             _toolView.playSwitch.enabled = YES;
             _toolView.playSwitch.selected = YES;
         } else{
-            
-            NSLog(@"load break");
+            NSLog(@"AVPlayerItem status error: it is not ReadyToPlay");
             self.failedView.hidden = NO;
         }
     }
@@ -688,8 +687,7 @@
 }
 
 - (void)dealloc {
-    
-    NSLog(@"player view dealloc");
+    NSLog(@"Player view will be deallocated");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserverWithPlayerItem:self.playerItem];
 }

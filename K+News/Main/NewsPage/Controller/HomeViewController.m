@@ -156,7 +156,7 @@
             self.loadingView.hidden = YES;
             self.isLoaded = YES;
             self.isLoading = NO;
-            NSLog(@"%@", responseObject);
+            NSLog(@"Search success, data: %@", responseObject);
             self.tabModel = [[TabModel alloc] initWithDict:responseObject];
             if (self.tabModel.len){
                 [self addChildViewController:self.tabCVC];

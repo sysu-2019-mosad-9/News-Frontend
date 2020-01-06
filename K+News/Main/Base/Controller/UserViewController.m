@@ -389,7 +389,7 @@ static UserViewController * instance;
             self.signUpPageView = nil;
             [self infoPageView];
         });
-        NSLog(@"%@",responseObject);
+        NSLog(@"Signup failed, err: %@",responseObject);
     } failues:^(id error) {
         NSData * errData = [[error userInfo] valueForKey:@"com.alamofire.serialization.response.error.data"];
         NSString * errString = [[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding];

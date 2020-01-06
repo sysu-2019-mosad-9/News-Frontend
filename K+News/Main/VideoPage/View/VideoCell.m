@@ -45,7 +45,7 @@
     GoodNum = goodNum;
     ImgURL = imgURL;
     CommentNum = commentNum;
-    NSLog(@"%@", GoodNum);
+    //NSLog(@"VideoCell, number of Goods = %@", GoodNum);
     [_loveBtn setTitle:GoodNum forState:UIControlStateNormal];
     [_comBtn setTitle:CommentNum forState:UIControlStateNormal];
     
