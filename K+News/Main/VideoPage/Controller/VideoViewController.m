@@ -5,13 +5,10 @@
 //  Created by tplish on 2019/12/15.
 //  Copyright © 2019 Team09. All rights reserved.
 //
-#define MAS_SHORTHAND
-#define MAS_SHORTHAND_GLOBALS
 
 #import <Foundation/Foundation.h>
 #import "VideoViewController.h"
 #import "AFNetworking.h"
-#import "Masonry.h"
 
 #import "GlobalVariable.h"
 
@@ -60,7 +57,6 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     NSString * URL = [BaseIP stringByAppendingString:@":8000/api/v1/video/entries?"];
-//    NSString * URL = @"http://localhost:8000/api/v1/video/entries?";
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
     params[@"count"] = [NSString stringWithFormat:@"%d", MAX_VEDIO];
     // _dataSource = [NSMutableArray arrayWithCapacity:count];
@@ -73,8 +69,12 @@
           parameters:params
             progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            for (int i = 0; i < MAX_VEDIO; i++) {
-                RHVideoModel * model = [[RHVideoModel alloc] initWithVideoId:[NSString stringWithFormat:@"%03d", i + 1] title:responseObject[@"data"][i][@"title"] url:responseObject[@"data"][i][@"video_link"] currentTime:0];
+            for (NSUInteger i = 0; i < MAX_VEDIO; i++) {
+                RHVideoModel * model = [[RHVideoModel alloc]
+                        initWithVideoId:[NSString stringWithFormat:@"%03lu", i + 1]
+                                  title:responseObject[@"data"][i][@"title"]
+                                    url:responseObject[@"data"][i][@"video_link"] currentTime:0
+                ];
                 self.dataSource[i] = model;
                 self.imgArr[i] = responseObject[@"data"][i][@"video_preview"];
                 self.goodArr[i] = [NSString stringWithFormat:@"%@", responseObject[@"data"][i][@"n_good"]];

@@ -18,9 +18,9 @@
 - (instancetype)initWithDict:(NSDictionary *)dict{
     self = [super init];
     if (self){
-        self.token = [dict objectForKey:@"token"];
-//        self.avatar = [dict objectForKey:@"avatar"];
-        self.success = [dict objectForKey:@"success"];
+        self.token = dict[@"token"];
+        self.avatar = [dict objectForKey:@"avatar"];
+        self.success = dict[@"success"];
     }
     return self;
 }

@@ -122,7 +122,7 @@
     if (_tabs == nil){
         _tabs = [NSMutableArray array];
         
-        for (int i=0; i<[self.tabModel.len intValue]; i++){
+        for (NSUInteger i=0; i<[self.tabModel.len intValue]; i++){
             [_tabs addObject:self.tabModel.names[i]];
         }
     }

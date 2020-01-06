@@ -25,7 +25,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.dataSource = [NSMutableArray arrayWithCapacity:MAX_IMG];
-    for (int i = 0; i < MAX_IMG; i++) {
+    for (NSUInteger i = 0; i < MAX_IMG; i++) {
         self.dataSource[i] = [UIImage imageNamed:@"loading.png"];
     }
     [self setup];
@@ -33,7 +33,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    for (int i = 0; i < MAX_IMG; i++) {
+    for (NSUInteger i = 0; i < MAX_IMG; i++) {
         self.dataSource[i] = [UIImage imageNamed:@"loading.png"];
     }
     [self.collection reloadData];
@@ -76,7 +76,7 @@
         dispatch_queue_t dispatchQueue = dispatch_queue_create("download.images", DISPATCH_QUEUE_CONCURRENT);
         // dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
         dispatch_group_t dispatchGroup = dispatch_group_create();
-        for (int i = 0; i < [responseObject[@"count"] intValue]; i++) {
+        for (NSUInteger i = 0; i < [responseObject[@"count"] intValue]; i++) {
             dispatch_group_async(dispatchGroup, dispatchQueue, ^{
                 NSString *imgUrl = responseObject[@"data"][i][@"image_link"];
                 if (![imgUrl hasPrefix:@"http://"]) {
@@ -116,12 +116,6 @@
 // Column of each session = 2.
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 2;
-}
-
-// Set the space of collection.
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    // UIEdgeInsets insets = {top, left, bottom, right};
-    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 // Set the image of each cell.

@@ -15,7 +15,6 @@
 #import "Base/GlobalVariable.h"
 #import "Base/NetRequest.h"
 
-#import "Masonry.h"
 
 @interface NewsDetailViewController()
 @property (nonatomic, strong) WKWebView * webView;

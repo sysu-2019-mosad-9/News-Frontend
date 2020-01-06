@@ -14,8 +14,8 @@
 - (instancetype)initWithDict:(NSDictionary *) dict{
     self = [super init];
     if (self){
-        self.title = [dict objectForKey:@"title"];
-        self.body = [dict objectForKey:@"body"];
+        self.title = dict[@"title"];
+        self.body = dict[@"body"];
     }
     return self;
 }

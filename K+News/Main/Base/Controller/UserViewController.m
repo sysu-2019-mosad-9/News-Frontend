@@ -356,7 +356,7 @@ static UserViewController * instance;
         NSDictionary * errDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:[errDict objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:errDict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
         });
@@ -397,7 +397,7 @@ static UserViewController * instance;
         NSDictionary * errDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:[errDict objectForKey:@"message"] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:errDict[@"message"] preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
         });

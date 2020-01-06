@@ -730,12 +730,12 @@
     
     if (!_activity) {
         
-        UIActivityIndicatorView * activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        UIActivityIndicatorView * activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
         activity.color = [UIColor redColor];
         // 指定进度轮中心点
         [activity setCenter:self.center];
         // 设置进度轮显示类型
-        [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleMedium];
         _activity = activity;
     }
     return _activity;
