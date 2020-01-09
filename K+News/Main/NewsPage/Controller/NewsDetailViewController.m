@@ -15,7 +15,6 @@
 #import "Base/GlobalVariable.h"
 #import "Base/NetRequest.h"
 
-#import "Masonry.h"
 
 @interface NewsDetailViewController()
 @property (nonatomic, strong) WKWebView * webView;
@@ -94,7 +93,7 @@
     if (_model == nil){
         [[NetRequest shareInstance] SynGET:[BaseIP stringByAppendingFormat:@":8000%@", self.detailUrl] params:nil progress:^(id downloadProgress) {
         } success:^(id responseObject) {
-            NSLog(@"%@", responseObject);
+            //NSLog(@"Successfully Get news detail: %@", responseObject);
             self->_model = [[NewsDetailModel alloc] initWithDict:responseObject];
         } failues:^(id error) {
         }];

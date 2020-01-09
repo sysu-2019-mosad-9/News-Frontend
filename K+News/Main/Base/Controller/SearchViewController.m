@@ -95,18 +95,18 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"%@", searchBar.text);
+    NSLog(@"Will search text: %@", searchBar.text);
     
     [self.resArr removeAllObjects];
     
     NSString * url = [BaseIP stringByAppendingFormat:@":8000/api/v1/search"];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    [params setObject:searchBar.text forKey:@"text"];
-    [params setObject:[NSNumber numberWithInt:8] forKey:@"count"];
+    params[@"text"] = searchBar.text;
+    params[@"count"] = @8;
     [[NetRequest shareInstance] GET:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
         NSArray * data = [responseObject objectForKey:@"result"];
-        for (int i=0; i<data.count; i++){
+        for (NSUInteger i=0; i<data.count; i++){
             SearchModel * model = [[SearchModel alloc] initWithDict:data[i]];
             [self.resArr addObject:model];
         }
@@ -119,7 +119,7 @@
             }
             [self.tableView reloadData];
         });
-        NSLog(@"%@", data);
+        NSLog(@"Search request result: %@", data);
     } failues:^(id error) {
         SearchModel * model = [[SearchModel alloc] init];
         model.title = @"找不到呢";
@@ -128,13 +128,13 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        NSLog(@"%@", error);
+        NSLog(@"Search failed, err: %@", error);
     }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if ([[self.resArr[indexPath.row] detailUrl]  isEqual: @""])return;
+    if ([[self.resArr[indexPath.row] detailUrl] isEqual:@""])return;
     
     NewsDetailViewController * detailVC = [[NewsDetailViewController alloc] init];
     detailVC.detailUrl = [self.resArr[indexPath.row] detailUrl];

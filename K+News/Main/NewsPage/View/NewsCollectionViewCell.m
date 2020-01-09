@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "NewsCollectionViewCell.h"
 #import "Masonry.h"
-#import "Base/Extensions/UIColor+Hex.h"
 
 @interface NewsCollectionViewCell()
 

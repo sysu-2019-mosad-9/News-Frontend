@@ -45,7 +45,7 @@
     GoodNum = goodNum;
     ImgURL = imgURL;
     CommentNum = commentNum;
-    NSLog(@"%@", GoodNum);
+    //NSLog(@"VideoCell, number of Goods = %@", GoodNum);
     [_loveBtn setTitle:GoodNum forState:UIControlStateNormal];
     [_comBtn setTitle:CommentNum forState:UIControlStateNormal];
     
@@ -99,7 +99,7 @@
 //        _loveBtn.layer.borderWidth = 0.2;
 //        _loveBtn.layer.cornerRadius = 7.0f;
 //        _loveBtn.layer.masksToBounds = YES;
-        [_loveBtn setImage:[UIImage imageNamed:@"Good1.png"] forState:0];
+        [_loveBtn setImage:[UIImage imageNamed:@"Good1.png"] forState:UIControlStateNormal];
         [_loveBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, -_loveBtn.imageView.bounds.size.width + 25, 5, 0)];
         [_loveBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -5, 5, 0)];
 //        [_loveBtn setBackgroundColor:[UIColor colorWithRed:102 / 255.0 green:199 / 255.0 blue:90 / 255.0 alpha:1]];
@@ -116,7 +116,7 @@
 //        _comBtn.layer.borderWidth = 0.2;
 //        _comBtn.layer.cornerRadius = 7.0f;
 //        _comBtn.layer.masksToBounds = YES;
-        [_comBtn setImage:[UIImage imageNamed:@"Comment.png"] forState:0];
+        [_comBtn setImage:[UIImage imageNamed:@"Comment.png"] forState:UIControlStateNormal];
         [_comBtn setTitleEdgeInsets:UIEdgeInsetsMake(5, -_comBtn.imageView.bounds.size.width + 30, 5, 0)];
         [_comBtn setImageEdgeInsets:UIEdgeInsetsMake(5, -5, 5, 0)];
 //        [_comBtn setBackgroundColor:[UIColor colorWithRed:102 / 255.0 green:199 / 255.0 blue:90 / 255.0 alpha:1]];
@@ -167,20 +167,20 @@
 
 - (void)makeGood {
     if (isLike == 0) {
-        [_loveBtn setImage:[UIImage imageNamed:@"Good2"] forState:0];
+        [_loveBtn setImage:[UIImage imageNamed:@"Good2"] forState:UIControlStateNormal];
         NSInteger num = [GoodNum intValue];
         num = num + 1;
         NSString * newNum = [NSString stringWithFormat:@"%ld", num];
         GoodNum = newNum;
-        [_loveBtn setTitle:newNum forState:0];
+        [_loveBtn setTitle:newNum forState:UIControlStateNormal];
         isLike = 1;
     } else {
-        [_loveBtn setImage:[UIImage imageNamed:@"Good1"] forState:0];
+        [_loveBtn setImage:[UIImage imageNamed:@"Good1"] forState:UIControlStateNormal];
         NSInteger num = [GoodNum intValue];
         num = num - 1;
         NSString * newNum = [NSString stringWithFormat:@"%ld", num];
         GoodNum = newNum;
-        [_loveBtn setTitle:newNum forState:0];
+        [_loveBtn setTitle:newNum forState:UIControlStateNormal];
         isLike = 0;
     }
 }

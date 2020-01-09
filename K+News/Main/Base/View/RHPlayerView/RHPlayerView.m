@@ -321,7 +321,7 @@
         
         if (playerItem.status == AVPlayerItemStatusReadyToPlay) {
             
-            NSLog(@"playerItem is ready");
+            NSLog(@"AVPlayerItem is ready");
             
             [self.player play];
             self.link.paused = NO;
@@ -338,8 +338,7 @@
             _toolView.playSwitch.enabled = YES;
             _toolView.playSwitch.selected = YES;
         } else{
-            
-            NSLog(@"load break");
+            NSLog(@"AVPlayerItem status error: it is not ReadyToPlay");
             self.failedView.hidden = NO;
         }
     }
@@ -688,8 +687,7 @@
 }
 
 - (void)dealloc {
-    
-    NSLog(@"player view dealloc");
+    NSLog(@"Player view will be deallocated");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserverWithPlayerItem:self.playerItem];
 }
@@ -732,12 +730,12 @@
     
     if (!_activity) {
         
-        UIActivityIndicatorView * activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        UIActivityIndicatorView * activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
         activity.color = [UIColor redColor];
         // 指定进度轮中心点
         [activity setCenter:self.center];
         // 设置进度轮显示类型
-        [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activity setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleMedium];
         _activity = activity;
     }
     return _activity;

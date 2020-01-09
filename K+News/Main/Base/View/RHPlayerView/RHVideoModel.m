@@ -68,11 +68,11 @@
     if (_style == RHVideoPlayStyleNetworkSD) {
         
         _url = [[NSURL URLWithString:_sdUrl] copy];
-        NSLog(@"%@", _sdUrl);
+        //NSLog(@"%@", _sdUrl);
     } else if (_style == RHVideoPlayStyleNetworkHD) {
         
         _url = [[NSURL URLWithString:_hdUrl] copy];
-        NSLog(@"%@", _hdUrl);
+        //NSLog(@"%@", _hdUrl);
     }
 }
 

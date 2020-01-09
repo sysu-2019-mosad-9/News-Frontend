@@ -31,9 +31,9 @@
 
 - (void)updateIndex:(NSInteger)index{
     if (index > currentIndex){
-        [self setViewControllers:[NSArray arrayWithObject:self.controllers[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self setViewControllers:@[self.controllers[index]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     } else {
-        [self setViewControllers:[NSArray arrayWithObject:self.controllers[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+        [self setViewControllers:@[self.controllers[index]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     }
     currentIndex = index;
 }
@@ -64,7 +64,7 @@
 }
 
 -(UIViewController*)pageControllerAtIndex:(NSInteger)index{
-    return [self.controllers objectAtIndex:index];
+    return self.controllers[index];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{

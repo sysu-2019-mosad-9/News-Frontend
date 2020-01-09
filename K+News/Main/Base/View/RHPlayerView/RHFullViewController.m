@@ -19,9 +19,9 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    
-    return YES;
-}
+// The following method is deprecated
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+//    return YES;
+//}
 
 @end

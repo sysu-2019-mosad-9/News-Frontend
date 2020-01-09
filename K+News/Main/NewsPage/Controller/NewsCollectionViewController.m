@@ -11,7 +11,6 @@
 
 // 新闻页控件和数据
 #import "../View/NewsCollectionViewCell.h"
-#import "../Model/NewsModel.h"
 
 // 新闻详情页
 #import "NewsDetailViewController.h"
@@ -61,7 +60,7 @@
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshTempBlock];
-        for (int i=0; i<self.tempBlock.count; i++){
+        for (NSUInteger i=0; i<self.tempBlock.count; i++){
             [self.newsBlock insertObject:self.tempBlock[i] atIndex:0];
         }
         [self.collectionView.mj_header endRefreshing];
@@ -71,7 +70,7 @@
     
     self.collectionView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
         [self refreshTempBlock];
-        for (int i=0; i<self.tempBlock.count; i++){
+        for (NSUInteger i=0; i<self.tempBlock.count; i++){
             [self.newsBlock addObject:self.tempBlock[i]];
         }
         [self.collectionView.mj_footer endRefreshing];
@@ -100,8 +99,8 @@
     
     NSString * url = [BaseIP stringByAppendingFormat:@":8000/api/v1/news/%ld/entries", (long)self.tabID];
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithInt:8] forKey:@"count"];
-    [params setObject:[NSNumber numberWithInt:10] forKey:@"img_most"];
+    params[@"count"] = @8;
+    params[@"img_most"] = @10;
     
     [[NetRequest shareInstance] SynGET:url params:params progress:^(id downloadProgress) {
     } success:^(id responseObject) {
@@ -131,30 +130,29 @@
 
 - (void)downloadImg:(NSString*)url{
     if (url == nil)return;
+    NSLog(@"Will download image at url: %@", url);
+    if (self.imgDict[url] != nil && self.imgDict[url] !=NSNull.null)return;
     
-    if ([self.imgDict objectForKey:url] != nil && [self.imgDict objectForKey:url]!=NSNull.null)return;
+    self.imgDict[url] = NSNull.null;
     
-    [self.imgDict setObject:NSNull.null forKey:url];
-    
-    NSString * cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString * cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     __block NSString * cacheImgPath = [cacheDir stringByAppendingFormat:@"/%@", [[url lastPathComponent] stringByDeletingPathExtension]];
     __block UIImage * cacheImg = [UIImage imageWithContentsOfFile:cacheImgPath];
     if (cacheImg != nil){
-        [self.imgDict setObject:cacheImg forKey:url];
+        self.imgDict[url] = cacheImg;
         return;
     }
-    NSLog(@"%@", url);
     NSBlockOperation * operation = [NSBlockOperation blockOperationWithBlock:^{
         NSURL * nsurl = [NSURL URLWithString:url];
         NSData * data = [NSData dataWithContentsOfURL:nsurl];
         cacheImg = [UIImage imageWithData:data];
         
         if (cacheImg == nil){
-            [self.imgDict setObject:NSNull.null forKey:url];
+            self.imgDict[url] = NSNull.null;
         }
         if (cacheImg != nil){
             [NSOperationQueue.mainQueue addOperationWithBlock:^{
-                [self.imgDict setObject:cacheImg forKey:url];
+                self.imgDict[url] = cacheImg;
                 NSFileManager * fileManager = [NSFileManager defaultManager];
                 [fileManager createFileAtPath:cacheImgPath contents:nil attributes:nil];
                 [UIImagePNGRepresentation(cacheImg) writeToFile:cacheImgPath atomically:YES];
@@ -189,12 +187,13 @@
     
     UIImage * image = nil;
     for (int i=0; i<[self.newsBlock[indexPath.row] imageLinks].count; i++){
-        image = [self.imgDict objectForKey:[self.newsBlock[indexPath.row] imageLinks][i]];
+        image = self.imgDict[[self.newsBlock[indexPath.row] imageLinks][i]];
         if ([image isEqual:NSNull.null] == NO) break;
     }
     
     if (image != nil && [image isEqual:NSNull.null]==NO) _cell.imageView.image = image;
-    
+    else _cell.imageView.image = [UIImage imageNamed:@"no-images"];
+
     UILongPressGestureRecognizer* longpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longpress:)];
     longpgr.minimumPressDuration = 1.0;
     longpgr.view.tag = indexPath.row;
@@ -206,7 +205,7 @@
 - (void)longpress:(UILongPressGestureRecognizer*) longpgr{
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"tips" message:@"确定删除吗" preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            id obj = [self.newsBlock objectAtIndex:longpgr.view.tag];
+            id obj = self.newsBlock[longpgr.view.tag];
             [self.newsBlock removeObject:obj];
             [self.collectionView reloadData];
     }]];
@@ -222,7 +221,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"select");
+    //NSLog(@"Select collectionView item at indexPath: %@", indexPath);
     NewsDetailViewController * detailVC = [[NewsDetailViewController alloc] init];
     detailVC.detailUrl = [self.newsBlock[indexPath.row] detailUrl];
     detailVC.curNav = self.curNav;

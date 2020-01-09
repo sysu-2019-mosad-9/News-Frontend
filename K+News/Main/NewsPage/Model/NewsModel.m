@@ -14,10 +14,10 @@
 - (instancetype)initWithDict:(NSDictionary *)dict{
     self = [super init];
     if (self){
-        self.ID = [dict objectForKey:@"id"];
-        self.title = [dict objectForKey:@"title"];
-        self.imageLinks = [dict objectForKey:@"image_links"];
-        self.detailUrl = [dict objectForKey:@"detail_url"];
+        self.ID = dict[@"id"];
+        self.title = dict[@"title"];
+        self.imageLinks = dict[@"image_links"];
+        self.detailUrl = dict[@"detail_url"];
     }
     return self;
 }

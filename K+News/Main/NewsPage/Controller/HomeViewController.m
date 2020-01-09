@@ -122,7 +122,7 @@
     if (_tabs == nil){
         _tabs = [NSMutableArray array];
         
-        for (int i=0; i<[self.tabModel.len intValue]; i++){
+        for (NSUInteger i=0; i<[self.tabModel.len intValue]; i++){
             [_tabs addObject:self.tabModel.names[i]];
         }
     }
@@ -156,7 +156,7 @@
             self.loadingView.hidden = YES;
             self.isLoaded = YES;
             self.isLoading = NO;
-            NSLog(@"%@", responseObject);
+            NSLog(@"Search success, data: %@", responseObject);
             self.tabModel = [[TabModel alloc] initWithDict:responseObject];
             if (self.tabModel.len){
                 [self addChildViewController:self.tabCVC];
