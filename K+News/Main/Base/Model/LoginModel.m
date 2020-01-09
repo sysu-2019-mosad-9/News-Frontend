@@ -19,7 +19,6 @@
     self = [super init];
     if (self){
         self.token = dict[@"token"];
-        self.avatar = [dict objectForKey:@"avatar"];
         self.success = dict[@"success"];
     }
     return self;
